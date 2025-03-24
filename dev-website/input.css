@@ -2,4 +2,7 @@
 [x-cloak] { display: none !important; }
 @theme {
     --color-backgrnd: #312836;
+    --color-section-bg: #3E3444;
+    --color-navbtn: #D75FCF;
+
   }
