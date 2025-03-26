@@ -10,13 +10,13 @@
 </head>
 <body class="h-screen bg-radial from-fuchsia-900 from-10% to-zinc-900">
     <header class="  text-white p-4">
-        <!-- <h1 class="text-xl">My Website</h1> -->
+        <!-- <h1 class="text-xl">dev Website</h1> -->
     </header>
 
-    <main class="flex flex-col md:flex-row h-screen ml-16" x-data="{ activeSection: 'home' }">
+    <main class="flex flex-col md:flex-row h-screen " x-data="{ activeSection: 'home' }">
         <!-- Sidebar -->
-        <aside class="md:w-1/6 md:w-24 h-auto md:h-full md:flex fixed md:relative md:items-end items-end bottom-0 left-0 flex md:flex-col md:justify-around py-2 md:py-4">
-            <nav class="flex fixed md:w-full md:flex-col md:items-end justify-around ">
+        <aside class=" md:w-1/6 md:w-24 h-auto md:h-full md:flex fixed md:relative md:items-end items-end bottom-0 left-10 flex md:flex-col md:justify-around py-2 md:py-4">
+            <nav class="flex fixed md:w-full md:flex-col md:items-end ">
                     <button  data-tooltip-target="tooltip-light" data-tooltip-style="light" x-on:click=" activeSection = 'home'" 
                     class="flex items-center justify-center  w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-700 group"><!--Home-->
                         <svg class=" w-10 h-10 transition-colors text-fuchsia-500 group-hover:text-backgrnd" viewBox="0 0 122.88 112.07" fill="currentColor">
@@ -78,35 +78,75 @@
         </aside>
 
         <!-- Main Content -->
-        <section class="w-5/6 p-2 flex bg-section-bg w-full md:w-5/6 overflow-y-auto" >
+        <section class=" p-3 flex bg-section-bg w-full md:ml-10 mr-18 mb-16 overflow-y-auto no-scrollbar" >
             <!--Home -->
-            <div x-cloak x-show="activeSection === 'home'" class="flex md:m-20 flex-row md:flex-col items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                <div class="flex md:flex-row flex-col">
-                    <img src="img/sofonias_portrait.png" alt="Sofonias_gashaw" class="w-40 h-40 md:w-75 md:h-75  object-cover shadow-fuchsia-500/50 shadow-lg">
-                    <div class="text-center md:text-left">
-                        <h2 class="text-2xl font-bold">NAME</h2>
-                        <p class="mt-2">This is the main content area.</p>
+            <div x-cloak x-show="activeSection === 'home'" class=" flex md:m-10 flex-col justify-around items-center md:items-start space-y-6  ">
+                <div class="flex md:flex-row items-center flex-col">
+                    <img src="img/sofonias_portrait.png" alt="Sofonias_gashaw" class="w-40 h-40 md:w-80 md:h-80 mt-10 object-cover shadow-fuchsia-600/50 shadow-lg">
+                    <div class="text-center md:text-left text-justify font-mono ">
+                        <!-- Name typing effect -->
+                        <div class="max-w-4xl mx-auto md:text-left text-center m-3 mt-10 "
+                            x-data="{
+                                        text: '',
+                                        textArray: ['>Sofonias Gashaw'],
+                                        textIndex: 0,
+                                        charIndex: 0,
+                                        typeSpeed: 110,
+                                        paused: false
+                                    }"
+                            x-init="setInterval(() => {
+                                        if ($data.paused) return; // Skip typing if paused
+                                        
+                                        let current = $data.textArray[$data.textIndex]; 
+                                        $data.text = current.substring(0, $data.charIndex); 
+                                        
+                                        // Pause after first character
+                                        if ($data.charIndex === 1) {
+                                            $data.paused = true;
+                                            setTimeout(() => { $data.paused = false; }, 1000); // 1s pause
+                                        }
+                                        
+                                        $data.charIndex += 1; 
+                                    }, $data.typeSpeed);">
+                            <h1 class="text-5xl md:text-5xl font-mono font-extrabold text-fuchsia-500 tracking-wide leading-tight">
+                                <span x-text="text"></span><span class="animate-blink text-fuchsia-500">_</span>
+                            </h1>
+                        </div>
+                        <style>
+                            @keyframes blink {
+                                50% { opacity: 0; }
+                            }
+                            .animate-blink {
+                                animation: blink 0.7s infinite;
+                            }
+                            </style>
+                        <!-- intro -->
+                         <p class="text-3xl md:ml-12 text-left text-fuchsia-100">Software Engineer | IT Technician</p>
+                        <p class="mx-6 mt-16 text-justify text-gray-200 text-xl">Hi, I'm Sofonias, a software engineer with a background in backend development, databases, and full-stack solutions. 
+                            With an interest and experience in web scraping, API development, and backend development, I love building efficient and scalable applications. 
+                            I'm always learning, solving problems, and refining my skills to create impactful solutions.
+                        </p>
                     </div>
                 </div>
+                <!-- stat table -->
                 <div class="text-center md:text-left">
-                    <h2 class="text-2xl font-bold">Welcome to My Website</h2>
-                    <p class="mt-2">This is the main content area.</p>
+                    
                 </div>
-                <div class="text-center md:text-left">
-                    <h2 class="text-2xl font-bold">Welcome to My Website</h2>
-                    <p class="mt-2">This is the main content area.</p>
-                </div>
+                
             </div>
+
             <!-- Profile -->
             <div x-cloak x-show="activeSection === 'profile'" class="">
                 <h2 class="text-2xl font-bold"> profile</h2>
                 <p class="mt-2">This is the main content area.</p>
             </div>
+
             <!-- Projects -->
             <div x-cloak x-show="activeSection === 'projects'" class="">
                 <h2 class="text-2xl font-bold">My Projects</h2>
                 <p class="mt-2">This is the main content area.</p>
             </div>
+
             <!-- contact -->
             <div x-cloak x-show="activeSection === 'contact'" class="">
                 <h2 class="text-2xl font-bold">Contact me</h2>
