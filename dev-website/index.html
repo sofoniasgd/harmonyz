@@ -8,49 +8,81 @@
     <link rel="icon" type="image/x-icon" href="img/favicon1.ico">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 </head>
-<body class="h-screen bg-radial from-fuchsia-900 from-10% to-zinc-900">
+<body class="h-screen animate-fade-in duration-700 bg-radial from-fuchsia-900 from-10% to-zinc-900 ">
     <header class="  text-white p-4">
         <!-- <h1 class="text-xl">dev Website</h1> -->
     </header>
 
-    <main class="flex flex-col md:flex-row h-screen " x-data="{ activeSection: 'home' }">
+    <main class="flex flex-col md:flex-row h-screen " x-data="{ activeSection: 'home', isTransitioning: false }">
         <!-- Sidebar -->
         <aside class=" md:w-1/6 md:w-24 h-auto md:h-full md:flex fixed md:relative md:items-end items-end bottom-0 left-10 flex md:flex-col md:justify-around py-2 md:py-4">
             <nav class="flex fixed md:w-full md:flex-col md:items-end ">
-                    <button  data-tooltip-target="tooltip-light" data-tooltip-style="light" x-on:click=" activeSection = 'home'" 
-                    class="flex items-center justify-center  w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-700 group"><!--Home-->
+                    <button x-on:click=" activeSection = 'home'"
+                        x-data="{ showTooltip: false }" 
+                        @mouseenter="showTooltip = true" 
+                        @mouseleave="showTooltip = false"  
+                        class="flex items-center justify-center w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-800 group"><!--Home-->
                         <svg class=" w-10 h-10 transition-colors text-fuchsia-500 group-hover:text-backgrnd" viewBox="0 0 122.88 112.07" fill="currentColor">
                             <path d="M61.44 0 0 60.18l14.99 7.87L61.04 19.7l46.85 48.36 14.99-7.87L61.44 0zM18.26 69.63 61.5 26.38l43.11 43.25v42.43H73.12V82.09H49.49v29.97H18.26V69.63z" style="fill-rule:evenodd;clip-rule:evenodd"/>
                         </svg>
+                        <!-- Tooltip -->
+                        <span x-show="showTooltip" 
+                            x-transition.opacity
+                            class="absolute left-full flex invisible group-hover:visible items-center justify-center h-20 w-30 bg-backgrnd text-fuchsia-500 text-2xl  py-1 px-2 shadow-lg ">
+                            Home
+                        </span>
                     </button>
-                    <div id="tooltip-light" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 tooltip">
-                        Home
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
                     <button x-on:click="activeSection = 'profile'" 
-                    class="flex items-center justify-center w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-700 group"><!-- Profile -->
+                        x-data="{ showTooltip: false, isTransitioning: false }" 
+                        @mouseenter="showTooltip = true" 
+                        @mouseleave="showTooltip = false"  
+                        class="flex items-center justify-center w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-800 group"><!-- Profile -->
                         <svg  class="w-10 h-10 transition-colors text-fuchsia-500 group-hover:text-backgrnd" viewBox="0 0 122.88 122.66" fill="currentColor">
                             <path d="m43.84 78.55 9.74 28.64 4.9-17-2.4-2.63c-1.08-1.58-1.32-2.96-.72-4.15 1.3-2.57 3.99-2.09 6.5-2.09 2.63 0 5.89-.5 6.71 2.8.28 1.1-.07 2.26-.84 3.44l-2.4 2.63 4.9 17 8.82-28.64c6.36 5.72 25.19 6.87 32.2 10.78 2.22 1.24 4.22 2.81 5.83 4.93 2.44 3.23 3.94 7.44 4.35 12.79l1.46 9.33c-.36 3.78-2.5 5.96-6.73 6.29H6.73c-4.23-.32-6.37-2.5-6.73-6.29l1.46-9.33c.41-5.35 1.91-9.56 4.35-12.79 1.61-2.13 3.61-3.7 5.83-4.93 7.01-3.91 25.84-5.06 32.2-10.78zm-4.41-40.99c-1.21.05-2.12.3-2.74.72-.36.24-.62.55-.79.91-.19.4-.27.89-.26 1.46.05 1.66.92 3.82 2.59 6.31l.02.04 5.44 8.66c2.18 3.47 4.47 7.01 7.31 9.61 2.73 2.5 6.05 4.19 10.44 4.2 4.75.01 8.23-1.75 11.04-4.39 2.93-2.75 5.25-6.51 7.53-10.27l6.13-10.1c1.14-2.61 1.56-4.35 1.3-5.38-.16-.61-.83-.91-1.97-.96-.24-.01-.49-.01-.75-.01-.27.01-.56.03-.86.05-.16.01-.32 0-.47-.03-.55.03-1.11-.01-1.68-.09l2.1-9.29c-11.21-.14-18.88-2.09-27.95-7.89-2.98-1.9-3.88-4.08-6.86-3.87-2.25.43-4.14 1.44-5.65 3.06-1.44 1.55-2.53 3.67-3.24 6.38l1.19 10.95a8.8 8.8 0 0 1-1.87-.07zm48.14-1.95c1.51.46 2.48 1.42 2.87 2.97.44 1.72-.04 4.13-1.49 7.43l-.09.18-6.2 10.22c-2.39 3.94-4.82 7.88-8.06 10.92-3.35 3.14-7.49 5.23-13.14 5.22-5.28-.01-9.25-2.03-12.51-5.01-3.15-2.88-5.56-6.6-7.85-10.24l-5.44-8.65c-1.99-2.97-3.02-5.68-3.09-7.91-.03-1.05.15-2 .53-2.83.41-.88 1.03-1.61 1.87-2.17.39-.26.83-.49 1.32-.67-.35-4.69-.49-10.61-.26-15.56.12-1.17.34-2.35.67-3.53 1.39-4.97 4.88-8.97 9.2-11.72 1.52-.97 3.19-1.77 4.95-2.41C61.3-1.95 75.16.12 82.58 8.14c3.02 3.27 4.92 7.61 5.33 13.34l-.34 14.13z" style="fill-rule:evenodd;clip-rule:evenodd"/>
                         </svg>
+                        <!-- Tooltip -->
+                        <span x-show="showTooltip" 
+                            x-transition.opacity
+                            class="absolute left-full flex invisible group-hover:visible items-center justify-center h-20 w-30 bg-backgrnd text-fuchsia-500 text-2xl  py-1 px-2 shadow-lg ">
+                            Profile
+                        </span>
                     </button>
                     <button x-on:click="activeSection = 'projects'" 
-                    class="flex items-center justify-center w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-700 group"><!--Projects-->
+                        x-data="{ showTooltip: false }" 
+                        @mouseenter="showTooltip = true" 
+                        @mouseleave="showTooltip = false"  
+                        class="flex items-center justify-center w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-800 group"><!--Projects-->
                         <svg class="w-10 h-10 transition-colors text-fuchsia-500 group-hover:text-backgrnd" viewBox="0 0 122.88 91.64" fill="currentColor">
                             <path d="M29.81 0h63.26a4.88 4.88 0 0 1 4.86 4.87v81.91a4.9 4.9 0 0 1-4.87 4.86H29.81A4.88 4.88 0 0 1 25 86.77V4.87a4.82 4.82 0 0 1 1.44-3.43A4.8 4.8 0 0 1 29.81 0Zm78.25 10 10.62-2a4.23 4.23 0 0 1 4.2 4.21v67.23a4.21 4.21 0 0 1-1.19 2.91v.05a4.2 4.2 0 0 1-3 1.24h-10.48a.83.83 0 0 1-.83-.84v-72a.83.83 0 0 1 .68-.82ZM4.41 8l10.41 2a.83.83 0 0 1 .68.82v72a.83.83 0 0 1-.83.84H4.2a4.2 4.2 0 0 1-3-1.24v-.05A4.21 4.21 0 0 1 0 79.44V12.21A4.23 4.23 0 0 1 4.2 8h.21Z"/>
                         </svg>
+                        <!-- Tooltip -->
+                        <span x-show="showTooltip" 
+                            x-transition.opacity
+                            class="absolute left-full flex invisible group-hover:visible items-center justify-center h-20 w-30 bg-backgrnd text-fuchsia-500 text-2xl  py-1 px-2 shadow-lg ">
+                            Projects
+                        </span>
                     </button>
 
-                    <button x-on:click="activeSection = 'contact'" 
-                    class="flex items-center justify-center  w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-700 group"><!-- Contact -->
+                    <button x-on:click="activeSection = 'contact'"
+                        x-data="{ showTooltip: false }" 
+                        @mouseenter="showTooltip = true" 
+                        @mouseleave="showTooltip = false"
+                        class="flex items-center justify-center  w-20 h-20 transition-colors bg-section-bg hover:bg-gradient-to-t from-fuchsia-500 to-fuchsia-800 group"><!-- Contact -->
                         <svg class="grid place-items-center w-10 h-10 transition-colors text-fuchsia-500 group-hover:text-backgrnd"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 85.57" fill="currentColor">
                             <path d="M3.8,0,62.48,47.85,118.65,0ZM0,80.52,41.8,38.61,0,4.53v76ZM46.41,42.37,3.31,85.57h115.9L78,42.37,64.44,53.94h0a3,3,0,0,1-3.78.05L46.41,42.37Zm36.12-3.84,40.35,42.33V4.16L82.53,38.53Z"/>
                         </svg>
+                        <!-- Tooltip -->
+                        <span x-show="showTooltip" 
+                            x-transition.opacity
+                            class="absolute left-full flex invisible group-hover:visible items-center justify-center h-20 w-30 bg-backgrnd text-fuchsia-500 text-2xl  py-1 px-2 shadow-lg ">
+                            Contact
+                        </span>
                     </button>
             
                     <!-- Gihub link -->
                     <a href="https://github.com/sofoniasgd" 
                     class="flex items-center justify-center  w-20 h-12 mt-6 invisible md:visible" target="_blank">
-                        <svg class="w-6 h-6 fill-fuchsia-700" viewBox="0 0 496 512">
+                        <svg class="w-6 h-6 fill-fuchsia-700 hover:fill-fuchsia-400" viewBox="0 0 496 512">
                         <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
                         <path
                             d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
@@ -59,7 +91,7 @@
                     <!-- Linkedin link -->
                     <a href="https://linkedin.com/in/sofonias-gashaw-dubale" 
                     class="flex items-center justify-center  w-20 h-12 invisible md:visible" target="_blank">
-                        <svg class="w-6 h-6 fill-sky-600" viewBox="0 0 448 512">
+                        <svg class="w-6 h-6 fill-sky-600 hover:fill-sky-400" viewBox="0 0 448 512">
                         <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
                         <path
                             d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
@@ -68,7 +100,7 @@
                     <!-- X link -->
                     <a href="https://x.com/Sofagashaw" 
                     class="md:flex items-center justify-center  w-20 h-12 invisible md:visible" target="_blank">
-                        <svg class="w-6 h-6 fill-fuchsia-700" viewBox="0 0 512 512">
+                        <svg class="w-6 h-6 fill-fuchsia-700 hover:fill-fuchsia-400" viewBox="0 0 512 512">
                         <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
                         <path
                             d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
@@ -78,9 +110,15 @@
         </aside>
 
         <!-- Main Content -->
-        <section class=" p-3 flex bg-section-bg w-full md:ml-10 mr-18 mb-16 overflow-y-auto no-scrollbar" >
+        <section 
+        x-data="{ isTransitioning: false }"    
+        class=" p-3 flex bg-section-bg w-full md:ml-10 mr-18 mb-16 overflow-y-auto no-scrollbar" >
             <!--Home -->
-            <div x-cloak x-show="activeSection === 'home'" class=" flex md:m-10 flex-col justify-around items-center md:items-start space-y-6  ">
+            <div x-cloak x-show="activeSection === 'home'"
+                x-transition:enter="opacity-0 duration-800"
+                x-transition:enter-end="opacity-100 duration-800"
+                
+                class=" flex md:m-10 flex-col justify-around items-center md:items-start space-y-6  ">
                 <div class="flex md:flex-row items-center flex-col">
                     <img src="img/sofonias_portrait.png" alt="Sofonias_gashaw" class="w-40 h-40 md:w-80 md:h-80 mt-10 object-cover shadow-fuchsia-600/50 shadow-lg">
                     <div class="text-center md:text-left text-justify font-mono ">
@@ -134,21 +172,42 @@
                 </div>
                 
             </div>
-
-            <!-- Profile -->
-            <div x-cloak x-show="activeSection === 'profile'" class="">
-                <h2 class="text-2xl font-bold"> profile</h2>
-                <p class="mt-2">This is the main content area.</p>
+            <!-- flex-row puts elements in a row(horizontal) while flex-col puts them in a column(vertical) -->
+            <!-- Profile section -->
+            <div x-cloak x-show="activeSection === 'profile'" 
+            x-transition:enter="opacity-0 duration-800"
+            x-transition:enter-end="opacity-100 duration-800"
+                class="flex flex-col m-3">
+                <!-- "profile skills"-two elements, left is image with a couple of buttons right shows skills -->
+                <div class="flex md:flex-row flex-col">
+                    <div>
+                        <!-- pic here -->
+                    </div>
+                    <div>
+                        <!-- skills -->
+                    </div>
+                </div>
+                <!-- profile education and employment(left and wright elemnts) -->
+                <div class="flex md:flex-row flex-col">
+                    <p class="mt-2">second row</p>
+                </div>
+                
             </div>
 
-            <!-- Projects -->
-            <div x-cloak x-show="activeSection === 'projects'" class="">
+            <!-- Projects section-->
+            <div x-cloak x-show="activeSection === 'projects'" 
+            x-transition:enter="opacity-0 duration-800"
+            x-transition:enter-end="opacity-100 duration-800"
+                class="m-3">
                 <h2 class="text-2xl font-bold">My Projects</h2>
                 <p class="mt-2">This is the main content area.</p>
             </div>
 
-            <!-- contact -->
-            <div x-cloak x-show="activeSection === 'contact'" class="">
+            <!-- contact section -->
+            <div x-cloak x-show="activeSection === 'contact'" 
+            x-transition:enter="opacity-0 duration-800"
+            x-transition:enter-end="opacity-100 duration-800"
+                class="">
                 <h2 class="text-2xl font-bold">Contact me</h2>
                 <p class="mt-2">This is the main content area.</p>
             </div>
