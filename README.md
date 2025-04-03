@@ -1,2 +1,2 @@
 # harmonyz
-## Developer website live at [https:harmonyz.dev](https://harmonyz.dev/)
+## Developer website live at [harmonyz.dev](https://harmonyz.dev/)
