@@ -1,3 +1,2 @@
 # harmonyz
-## Developer website
-## Coming Soon... 🚧👷‍♂️🚧
+## Developer website live at [harmonyz.dev](https://harmonyz.dev/)
