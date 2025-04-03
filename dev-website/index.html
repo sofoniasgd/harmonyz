@@ -112,7 +112,7 @@
         <!-- Main Content -->
         <section 
         x-data="{ isTransitioning: false }"    
-        class="  flex bg-section-bg w-full md:ml-10 mr-18 mb-16 overflow-y-auto no-scrollbar font-mono" >
+        class="  flex bg-section-bg w-full md:ml-10 md:mr-18 mb-16 overflow-y-auto no-scrollbar font-mono" >
             <!--Home -->
             <div x-cloak x-show="activeSection === 'home'"
                 x-transition:enter="opacity-0 duration-800"
@@ -157,7 +157,7 @@
                             .animate-blink {
                                 animation: blink 0.7s infinite;
                             }
-                            </style>
+                        </style>
                         <!-- intro -->
                          <p class="text-3xl md:ml-12 m-3 text-left text-pink-l hidden md:inline-block">Software Engineer | IT Technician</p>
                          <div class="m-3 md:hidden inline-block items-center ">
@@ -166,7 +166,7 @@
                          </div>
                          
 
-                        <p class="mx-6 mt-16 md:mb-0 mb-20 text-justify text-gray-200 text-xl">Hi, I'm Sofonias, a software engineer with a background in backend development, databases, and full-stack solutions. 
+                        <p class="mx-6 mt-16 md:mb-0 mb-20 text-justify text-gray-200 text-l md:text-xl">Hi, I'm Sofonias, a software engineer with a background in backend development, databases, and full-stack solutions. 
                             With an interest and experience in web scraping, API development, and backend development, I love building efficient and scalable applications. 
                             I'm always learning, solving problems, and refining my skills to create impactful solutions.
                         </p>
@@ -183,7 +183,7 @@
             <div x-cloak x-show="activeSection === 'profile'" 
             x-transition:enter="opacity-0 duration-800"
             x-transition:enter-end="opacity-100 duration-800"
-                class="flex flex-col  w-full">
+                class="flex flex-col w-full">
                 <!-- "profile skills"-two elements, left is image with a couple of buttons and right shows skills -->
                 <div class="flex md:flex-row flex-col ">
                     <div class="place-items-center hidden md:inline-block">
@@ -192,7 +192,7 @@
                     </div>
                     <div class=" flex flex-col mt-10 md:ml-12 ml-8 m-3 text-left text-pink-l placeitems-center w-auto">
                         <!-- skills -->
-                        <p class="text-4xl md:text-left text-center md:my-10 my-5">Skills</p>
+                        <p class="text-4xl md:text-left text-center md:my-4 my-4">Skills</p>
                         <div class="my-4  text-left ">
             <!-- backend section -->
                             <p class="md:text-2xl text-3xl border-l-4 border-l-pink-m md:my-5 my-2 md:pl-2 md:text-left text-center  ">Back-end Development</p>
@@ -403,9 +403,110 @@
                         </div>
                         <div class="my-5  text-left ">
     <!-- IT section -->
-                            <p class="md:text-2xl text-3xl border-l-4 border-l-pink-m md:my-5 my-2 pl-2 text-left ">IT Solutions</p>
-                            <div class="flex md:flex-row flex-col">
-
+                            <p class="md:text-2xl text-3xl border-l-4 border-l-pink-m md:my-5 my-2 md:pl-2 md:text-left text-center  ">IT Solutions</p>
+                            <!-- first row -->
+                            <div class="flex md:flex-row flex-col md:mr-8 mr-4">
+                                <!-- first column -->
+                                <div class="md:w-1/2 flex flex-col ">
+                                    <!-- subtitles here -->
+                                    <div x-data="{ open: false }" 
+                                        class=" m-2">
+                                        <div class="flex flex-row justify-between my-3">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">title 1</p>
+                                            <button x-on:click="open = ! open"  class="w-5 h-5">
+                                                <svg viewBox="0 -4.5 20 20"><path fill="#fdf4ff" fill-rule="evenodd" d="M20 1.39 18.594 0 9.987 8.261l-.918-.881.005.005L1.427.045 0 1.414 9.987 11 20 1.39"/></svg>
+                                            </button>
+                                        </div>
+                                        <div x-cloak x-show="open"
+                                        x-transition
+                                        class="flex flex-col ">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                        </div>
+                                    </div>
+                                    <!-- subtitles here -->
+                                    <div x-data="{ open: false }" 
+                                        class=" m-2">
+                                        <div class="flex flex-row justify-between my-3">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">title 1</p>
+                                            <button x-on:click="open = ! open"  class="w-5 h-5">
+                                                <svg viewBox="0 -4.5 20 20"><path fill="#fdf4ff" fill-rule="evenodd" d="M20 1.39 18.594 0 9.987 8.261l-.918-.881.005.005L1.427.045 0 1.414 9.987 11 20 1.39"/></svg>
+                                            </button>
+                                        </div>
+                                        <div x-cloak x-show="open"
+                                        x-transition
+                                        class="flex flex-col ">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                        </div>
+                                    </div>
+                                    <!-- subtitles here -->
+                                    <div x-data="{ open: false }" 
+                                        class=" m-2">
+                                        <div class="flex flex-row justify-between my-3">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">title 1</p>
+                                            <button x-on:click="open = ! open"  class="w-5 h-5">
+                                                <svg viewBox="0 -4.5 20 20"><path fill="#fdf4ff" fill-rule="evenodd" d="M20 1.39 18.594 0 9.987 8.261l-.918-.881.005.005L1.427.045 0 1.414 9.987 11 20 1.39"/></svg>
+                                            </button>
+                                        </div>
+                                        <div x-cloak x-show="open"
+                                        x-transition
+                                        class="flex flex-col ">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- second column -->
+                                 <div class="md:w-1/2 flex flex-col">
+                                    <!-- subtitles here -->
+                                    <div x-data="{ open: false }" 
+                                        class=" m-2">
+                                        <div class="flex flex-row justify-between my-3">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">title 1</p>
+                                            <button x-on:click="open = ! open"  class="w-5 h-5">
+                                                <svg viewBox="0 -4.5 20 20"><path fill="#fdf4ff" fill-rule="evenodd" d="M20 1.39 18.594 0 9.987 8.261l-.918-.881.005.005L1.427.045 0 1.414 9.987 11 20 1.39"/></svg>
+                                            </button>
+                                        </div>
+                                        <div x-cloak x-show="open"
+                                        x-transition
+                                        class="flex flex-col ">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                        </div>
+                                    </div>
+                                    <!-- subtitles here -->
+                                    <div x-data="{ open: false, height: 0 }"
+                                        class=" m-2">
+                                        <div class="flex flex-row justify-between my-3">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">title 1</p>
+                                            <button @click="open = !open; height = open ? $refs.content.scrollHeight : 0"   class="w-5 h-5">
+                                                <svg viewBox="0 -4.5 20 20"><path fill="#fdf4ff" fill-rule="evenodd" d="M20 1.39 18.594 0 9.987 8.261l-.918-.881.005.005L1.427.045 0 1.414 9.987 11 20 1.39"/></svg>
+                                            </button>
+                                        </div>
+                                        <div x-cloak x-ref="content" :style="'max-height:' + height + 'px'"
+                                        
+                                        class="overflow-hidden">
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                            <p class="md:text-lg text-2xl mx-2 text-left">subtitle 1</p>
+                                        </div>
+                                    </div>
+                                 </div>
                             </div>
                         </div>
                         
