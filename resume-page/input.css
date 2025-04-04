@@ -1,0 +1,15 @@
+@import "tailwindcss";
+[x-cloak] { display: none !important; }
+@theme {
+    --color-backgrnd: #312836;
+    --color-section-bg: #3E3444;
+    --color-navbtn: #D75FCF;
+    --color-pink-l: #fdf4ff; /* fuchsia-100 */
+    --color-pink-vl: #f6cfff; /* fuchsia-200 */
+    --color-pink-lm: #ed6bff; /* fuchsia-400 */
+    --color-pink-m: #e12afb; /* fuchsia-500 */
+    --color-pink-h: #a800b7; /* fuchsia-700 */
+    --color-pink-vh: #8a0194; /* fuchsia-800 */
+    --color-pink-vvh: #721378; /* fuchsia-900 */
+
+  }

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofonias Gashaw - Resume</title>
+    <link href="./output.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/favicon1.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    <style type="text/tailwind">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div class="fixed top-4 right-4 z-10">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+            <!-- Sun icon for dark mode -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <!-- Moon icon for light mode -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="max-w-4xl mx-auto p-4 sm:p-8 font-sans">
+        <header class="flex flex-col md:flex-row justify-between mb-8 md:mb-12">
+            <div>
+                <h1 class="text-4xl sm:text-5xl font-bold mb-2">Sofonias Gashaw</h1>
+                <p class="text-lg">Electrical Engineer | Software Engineer</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+                <p>Addis Ababa, Ethiopia</p>
+                <p>(251) 970 223923</p>
+                <p>(251) 922 433662</p>
+                <p>zephaniahsofa@gmail.com</p>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div class="md:col-span-2">
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">EXPERIENCE</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold">
+                            Addis Ababa — <span class="italic">Freelance IT Infrastructure Maintenance Specialist</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 uppercase text-sm mb-2">FEBRUARY 2020 - PRESENT</p>
+                        <p>Networking, Scheduled and on-demand Maintenance, Network Connectivity and Hardware issue Troubleshooting.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold">
+                            Addis Ababa City Administration, Addis Ababa — <span class="italic">Database Administrator</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 uppercase text-sm mb-2">MAY 2022 - PRESENT</p>
+                        <p>Account Verification,</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold">
+                            Addis Ababa City Administration, Addis Ababa — <span class="italic">Research and Training officer</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 uppercase text-sm mb-2">MAY 2020 - MAY 2022</p>
+                        <p>Designed and delivered training sessions, Conducted research on various topics.</p>
+                    </div>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">EDUCATION</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold">
+                            St. Mary's University, Addis Ababa — <span class="italic">Degree(Msc)</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 uppercase text-sm mb-2">OCTOBER 2021 - PRESENT(ONGOING)</p>
+                        <p>Master of Science in <span class="font-medium">Computer Science</span></p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold">
+                            ALX, Addis Ababa — <span class="italic">Certificate</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 uppercase text-sm mb-2">OCTOBER 2023 - NOVEMBER 2024</p>
+                        <p>Completed the 12 month <span class="font-medium">Software Engineering</span> program with Back-end Specialization</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold">
+                            Adigrat University, Adigrat — <span class="italic">Degree(Bsc)</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 uppercase text-sm mb-2">JULY 2014 - JULY 2019</p>
+                        <p>Bachelor of Science in <span class="font-medium">Electrical and Computer Engineering</span> (Computer focus)</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="md:col-span-1">
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">SKILLS</h2>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Programming languages:</p>
+                        <p>Python, C, JavaScript</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Frameworks:</p>
+                        <p>Flask, Bootstrap</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Database:</p>
+                        <p>Mysql, NoSQL(redis)</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Microcontroller based</p>
+                        <p>Electronics Design</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Operating Systems:</p>
+                        <p>Windows and Linux</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Hardware:</p>
+                        <p>PC assembly, troubleshooting, and repair</p>
+                    </div>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">Links</h2>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Personal Website:</p>
+                        <p>harmonyz.dev</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">GitHub:</p>
+                        <p>sofoniasgd</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">LinkedIn:</p>
+                        <p>sofonias-gashaw-dubale</p>
+                    </div>
+                </section>
+
+                <section class="mb-8">
+                    <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">LANGUAGES</h2>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">Amharic:</p>
+                        <p>Native</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-medium">English:</p>
+                        <p>Advanced(C1)</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        
+        // Check for system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
