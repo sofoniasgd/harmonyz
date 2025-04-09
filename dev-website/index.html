@@ -171,16 +171,16 @@
                             I'm always learning, solving problems, and refining my skills to create impactful solutions.
                         </p>
                         <div
-                        class=" flex flex-row  justify-end m-8">
+                        class=" flex flex-row justify-center md:justify-end md:m-8 m-5 ">
                             <a href="https://resume.harmonyz.dev"
-                            class="flex place-items-center justify-center w-20 h-10 md:m-5 md:w-32 md:h-12 bg-gradient-to-t from-pink-h to-pink-m shadow-md hover:shadow-pink-h hover:bg-gradient-to-b transition duration-300"
+                            class="flex items-center justify-center mx-2 w-30 h-10 md:m-5 md:w-32 md:h-12 bg-gradient-to-t from-pink-h to-pink-m shadow-md hover:shadow-pink-h hover:bg-gradient-to-b transition duration-300"
                             target="_blank">
                                 <p class="text-2xl text-pink-l text-normal text-center">Resume</p>
                             </a>
-                            <button x-on:click="activeSection = 'contact'"
-                            class=" w-20 h-10 md:m-5 md:w-32 md:h-12 bg-gradient-to-t from-pink-h to-pink-m shadow-md hover:shadow-pink-h hover:bg-gradient-to-b transition duration-300">
-                                <p class="text-2xl text-pink-l text-normal">Contact</p>
-                            </button>
+                            <a href="#" x-on:click="activeSection = 'contact'"
+                            class="flex items-center justify-center mx-2 w-30 h-10 md:m-5 md:w-32 md:h-12 bg-gradient-to-t from-pink-h to-pink-m shadow-md hover:shadow-pink-h hover:bg-gradient-to-b transition duration-300">
+                                <p class="text-2xl text-pink-l text-normal text-center">Contact</p>
+                            </a>
                         </div>
                         
                     </div>
@@ -650,65 +650,89 @@
                 class="flex w-full text-pink-l m-5">
                 <div class="flex md:flex-row flex-col w-full mx-2">
                     <!-- links -->
-                    <div class=" flex flex-col md:w-2/5 w-full mt-8">
-                    <h2 class="text-4xl text-left text-normal text-pink-vl font-serif mb-5">Get in touch</h2>
-                    <p class="text-3xl text-left mx-3 text-normal text-pink-m my-5">Lets talk about your project</p>
-                    <p
-                    class="text-xl text-left mx-3 text-normal text-pink-vl my-3">
-                    Thinking about a new project, a problem to solve, or just want to connect? Let's do it!
+                    <div class=" flex flex-col md:w-2/5 w-full md:mt-8 md:mr-2">
+                        <h2 class="text-4xl text-left text-normal text-pink-vl font-serif mb-5">Get in touch</h2>
+                        <p class="text-3xl text-left mx-3 text-normal text-pink-m my-5">Lets talk about your project</p>
+                        <p
+                        class="text-xl text-left mx-3 text-normal text-pink-vl my-3">
+                        Thinking about a new project, a problem to solve, or just want to connect? Let's do it!
 
-                        Use the form on this page to send me a message or get in touch through the links below.</p>
-                    <!-- links -->
-                    <div class="flex flex-col md:mt-5 text-pink-vl font-sans">
-                        <div class=" my-1 text-lg flex flex-row items-center">
-                            <div class=" flex items-center justify-center w-10 h-8">
-                                <svg xml:space="preserve" style="enable-background:new 0 0 122.88 122.27" viewBox="0 0 122.88 122.27" class="w-7 h-7">
-                                    <path fill="#e12afb" d="M33.84 50.25c4.13 7.45 8.89 14.6 15.07 21.12C55.11 77.93 62.82 83.9 72.8 89c.74.36 1.44.36 2.07.11.95-.36 1.92-1.15 2.87-2.1.74-.74 1.66-1.92 2.62-3.21 3.84-5.05 8.59-11.32 15.3-8.18.15.07.26.15.41.21l22.38 12.87c.07.04.15.11.21.15 2.95 2.03 4.17 5.16 4.2 8.71 0 3.61-1.33 7.67-3.28 11.1-2.58 4.53-6.38 7.53-10.76 9.51-4.17 1.92-8.81 2.95-13.27 3.61-7 1.03-13.56.37-20.27-1.69-6.56-2.03-13.17-5.38-20.39-9.84l-.53-.34c-3.31-2.07-6.89-4.28-10.4-6.89-12.84-9.7-25.93-23.71-34.46-39.13C2.35 50.95-1.55 36.98.58 23.67c1.18-7.3 4.31-13.94 9.77-18.32C15.11 1.51 21.52-.59 29.82.15c.95.07 1.8.62 2.25 1.44l14.35 24.26c2.1 2.72 2.36 5.42 1.21 8.12-.95 2.21-2.87 4.25-5.49 6.15-.77.66-1.69 1.33-2.66 2.03-3.21 2.33-6.86 5.02-5.61 8.18l-.03-.08z"/></svg>
+                            Use the form on this page to send me a message or get in touch through the links below.</p>
+                        <!-- links -->
+                        <div class="flex flex-col md:mt-5 text-pink-vl font-sans">
+                            <div class=" my-1 text-lg flex flex-row items-center">
+                                <div class=" flex items-center justify-center w-10 h-8">
+                                    <svg xml:space="preserve" style="enable-background:new 0 0 122.88 122.27" viewBox="0 0 122.88 122.27" class="w-7 h-7">
+                                        <path fill="#e12afb" d="M33.84 50.25c4.13 7.45 8.89 14.6 15.07 21.12C55.11 77.93 62.82 83.9 72.8 89c.74.36 1.44.36 2.07.11.95-.36 1.92-1.15 2.87-2.1.74-.74 1.66-1.92 2.62-3.21 3.84-5.05 8.59-11.32 15.3-8.18.15.07.26.15.41.21l22.38 12.87c.07.04.15.11.21.15 2.95 2.03 4.17 5.16 4.2 8.71 0 3.61-1.33 7.67-3.28 11.1-2.58 4.53-6.38 7.53-10.76 9.51-4.17 1.92-8.81 2.95-13.27 3.61-7 1.03-13.56.37-20.27-1.69-6.56-2.03-13.17-5.38-20.39-9.84l-.53-.34c-3.31-2.07-6.89-4.28-10.4-6.89-12.84-9.7-25.93-23.71-34.46-39.13C2.35 50.95-1.55 36.98.58 23.67c1.18-7.3 4.31-13.94 9.77-18.32C15.11 1.51 21.52-.59 29.82.15c.95.07 1.8.62 2.25 1.44l14.35 24.26c2.1 2.72 2.36 5.42 1.21 8.12-.95 2.21-2.87 4.25-5.49 6.15-.77.66-1.69 1.33-2.66 2.03-3.21 2.33-6.86 5.02-5.61 8.18l-.03-.08z"/></svg>
+                                </div>
+                                <p class="mx-1 font-normal"> phone: </p> 
+                                <a href="tel:251970223923" class="font-lg text-pink-m hover:text-pink-vl ">(+251) 970223923</a>                                
                             </div>
-                            <p class="mx-1 font-normal"> phone: </p> 
-                            <a href="#" class="font-lg text-pink-m hover:text-pink-vl ">(+251) 970223923</a>                                
-                        </div>
-                        <div class=" my-1 text-lg flex flex-row">
-                            <div class=" flex items-center justify-center w-10 h-8">
-                                <svg xml:space="preserve" style="enable-background:new 0 0 122.88 92.12" viewBox="0 0 122.88 92.12" class="w-8 h-7">
-                                <path d="M8.36 92.12H27.9V44.67L0 23.76v60.08c0 4.58 3.78 8.28 8.36 8.28z" style="fill:#4285f4"/><path d="M94.97 92.12h19.54c4.67 0 8.36-3.78 8.36-8.36v-60l-27.9 20.91v47.45z" style="fill:#34a853"/><path d="M94.97 8.4v36.27l27.91-20.91V12.58c0-10.37-11.82-16.25-20.11-10.05l-7.8 5.87z" style="fill:#fbbc04"/><path d="M27.9 44.67V8.4l33.54 25.17L94.97 8.4v36.27L61.44 69.76 27.9 44.67z" style="fill:#ea4335"/><path d="M0 12.58v11.18l27.91 20.91V8.4l-7.8-5.87C11.82-3.66 0 2.29 0 12.58z" style="fill:#c5221f"/></svg>
+                            <div class=" my-2 text-lg flex flex-row">
+                                <div class=" flex items-center justify-center w-10 h-8">
+                                    <svg xml:space="preserve" style="enable-background:new 0 0 122.88 92.12" viewBox="0 0 122.88 92.12" class="w-8 h-6">
+                                    <path d="M8.36 92.12H27.9V44.67L0 23.76v60.08c0 4.58 3.78 8.28 8.36 8.28z" style="fill:#4285f4"/><path d="M94.97 92.12h19.54c4.67 0 8.36-3.78 8.36-8.36v-60l-27.9 20.91v47.45z" style="fill:#34a853"/><path d="M94.97 8.4v36.27l27.91-20.91V12.58c0-10.37-11.82-16.25-20.11-10.05l-7.8 5.87z" style="fill:#fbbc04"/><path d="M27.9 44.67V8.4l33.54 25.17L94.97 8.4v36.27L61.44 69.76 27.9 44.67z" style="fill:#ea4335"/><path d="M0 12.58v11.18l27.91 20.91V8.4l-7.8-5.87C11.82-3.66 0 2.29 0 12.58z" style="fill:#c5221f"/></svg>
+                                </div>
+                                    <p class="mx-1 font-normal"> Email: </p> 
+                                <a href="mailto:zephaniahsofa@gmail.com" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">zephaniahsofa@gmail.com</a>                                
                             </div>
-                                <p class="mx-1 font-normal"> Email: </p> 
-                            <a href="#" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">zephaniahsofa@gmail.com</a>                                
-                        </div>
-                        <div class=" my-1 text-lg flex flex-row items-center">
-                            <div class=" flex items-center justify-center w-10 h-8">
-                                <svg data-name="Layer 1" viewBox="0 0 122.88 122.31" class="w-8 h-8">
-                            <path d="M27.75 0h67.38a27.83 27.83 0 0 1 27.75 27.75v66.82a27.83 27.83 0 0 1-27.75 27.74H27.75A27.83 27.83 0 0 1 0 94.57V27.75A27.83 27.83 0 0 1 27.75 0Z" style="fill-rule:evenodd;fill:#0a66c2"/><path d="M49.19 47.41h15.53v8h.22c2.17-3.88 7.45-8 15.34-8 16.39 0 19.42 10.2 19.42 23.47v28.06H83.51V74c0-5.71-.12-13.06-8.42-13.06s-9.72 6.21-9.72 12.65v25.4H49.19V47.41ZM40 31.79a8.42 8.42 0 1 1-8.42-8.42A8.43 8.43 0 0 1 40 31.79ZM23.18 47.41H40v51.53H23.18V47.41Z" style="fill:#fff;fill-rule:evenodd"/></svg>
+                            <div class=" my-2 text-lg flex flex-row items-center">
+                                <div class=" flex items-center justify-center w-10 h-8">
+                                    <svg data-name="Layer 1" viewBox="0 0 122.88 122.31" class="w-8 h-8">
+                                <path d="M27.75 0h67.38a27.83 27.83 0 0 1 27.75 27.75v66.82a27.83 27.83 0 0 1-27.75 27.74H27.75A27.83 27.83 0 0 1 0 94.57V27.75A27.83 27.83 0 0 1 27.75 0Z" style="fill-rule:evenodd;fill:#0a66c2"/><path d="M49.19 47.41h15.53v8h.22c2.17-3.88 7.45-8 15.34-8 16.39 0 19.42 10.2 19.42 23.47v28.06H83.51V74c0-5.71-.12-13.06-8.42-13.06s-9.72 6.21-9.72 12.65v25.4H49.19V47.41ZM40 31.79a8.42 8.42 0 1 1-8.42-8.42A8.43 8.43 0 0 1 40 31.79ZM23.18 47.41H40v51.53H23.18V47.41Z" style="fill:#fff;fill-rule:evenodd"/></svg>
+                                </div>
+                                
+                                    <p class="mx-1 font-normal"> Linkedin: </p> 
+                                    <a href="https://www.linkedin.com/in/sofonias-gashaw-dubale/" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">sofonias-gashaw-dubale</a>                                
                             </div>
-                            
-                                 <p class="mx-1 font-normal"> Linkedin: </p> 
-                                <a href="#" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">sofonias-gashaw-dubale</a>                                
-                        </div>
-                        <div class=" my-1 text-lg flex flex-row items-center">
-                            <div class=" flex items-center justify-center w-10 h-8">
-                                <svg fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 512 462.799" class="  w-6 h-6">
-                            <path fill="#e12afb" fill-rule="nonzero" d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"/></svg>
+                            <div class=" my-2 text-lg flex flex-row items-center">
+                                <div class=" flex items-center justify-center w-10 h-8">
+                                    <svg fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 512 462.799" class="  w-6 h-6">
+                                <path fill="#e12afb" fill-rule="nonzero" d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"/></svg>
+                                </div>
+                                
+                                    <p class="mx-1 font-normal"> Twitter/X: </p> 
+                                    <a href="https://x.com/Sofagashaw" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">sofagashaw</a>                                
                             </div>
-                            
-                                 <p class="mx-1 font-normal"> Twitter/X: </p> 
-                                <a href="#" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">sofagashaw</a>                                
-                        </div>
-                        <div class=" my-1 text-lg flex flex-row items-center">
-                            <div class=" flex items-center justify-center w-10 h-8">
-                                <svg class="w-8 h-8" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 512 388.049">
-                                <path fill="#5865F2" fill-rule="nonzero" d="M433.713 32.491A424.231 424.231 0 0 0 328.061.005c-4.953 8.873-9.488 18.156-13.492 27.509a393.937 393.937 0 0 0-58.629-4.408c-19.594 0-39.284 1.489-58.637 4.37-3.952-9.33-8.543-18.581-13.525-27.476-36.435 6.212-72.045 17.196-105.676 32.555-66.867 98.92-84.988 195.368-75.928 290.446a425.967 425.967 0 0 0 129.563 65.03c10.447-14.103 19.806-29.116 27.752-44.74a273.827 273.827 0 0 1-43.716-20.862c3.665-2.658 7.249-5.396 10.712-8.055 40.496 19.019 84.745 28.94 129.514 28.94 44.77 0 89.019-9.921 129.517-28.943 3.504 2.86 7.088 5.598 10.712 8.055a275.576 275.576 0 0 1-43.796 20.918 311.49 311.49 0 0 0 27.752 44.705 424.235 424.235 0 0 0 129.65-65.019l-.011.011c10.632-110.26-18.162-205.822-76.11-290.55zM170.948 264.529c-25.249 0-46.11-22.914-46.11-51.104 0-28.189 20.135-51.304 46.029-51.304 25.895 0 46.592 23.115 46.15 51.304-.443 28.19-20.336 51.104-46.069 51.104zm170.102 0c-25.29 0-46.069-22.914-46.069-51.104 0-28.189 20.135-51.304 46.069-51.304s46.472 23.115 46.029 51.304c-.443 28.19-20.296 51.104-46.029 51.104z"/></svg>
+                            <div class=" my-2 text-lg flex flex-row items-center">
+                                <div class=" flex items-center justify-center w-10 h-8">
+                                    <svg class="w-8 h-8" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 512 388.049">
+                                    <path fill="#5865F2" fill-rule="nonzero" d="M433.713 32.491A424.231 424.231 0 0 0 328.061.005c-4.953 8.873-9.488 18.156-13.492 27.509a393.937 393.937 0 0 0-58.629-4.408c-19.594 0-39.284 1.489-58.637 4.37-3.952-9.33-8.543-18.581-13.525-27.476-36.435 6.212-72.045 17.196-105.676 32.555-66.867 98.92-84.988 195.368-75.928 290.446a425.967 425.967 0 0 0 129.563 65.03c10.447-14.103 19.806-29.116 27.752-44.74a273.827 273.827 0 0 1-43.716-20.862c3.665-2.658 7.249-5.396 10.712-8.055 40.496 19.019 84.745 28.94 129.514 28.94 44.77 0 89.019-9.921 129.517-28.943 3.504 2.86 7.088 5.598 10.712 8.055a275.576 275.576 0 0 1-43.796 20.918 311.49 311.49 0 0 0 27.752 44.705 424.235 424.235 0 0 0 129.65-65.019l-.011.011c10.632-110.26-18.162-205.822-76.11-290.55zM170.948 264.529c-25.249 0-46.11-22.914-46.11-51.104 0-28.189 20.135-51.304 46.029-51.304 25.895 0 46.592 23.115 46.15 51.304-.443 28.19-20.336 51.104-46.069 51.104zm170.102 0c-25.29 0-46.069-22.914-46.069-51.104 0-28.189 20.135-51.304 46.069-51.304s46.472 23.115 46.029 51.304c-.443 28.19-20.296 51.104-46.029 51.104z"/></svg>
+                                </div>
+                                
+                                    <p class="mx-1 font-normal"> Discord: </p> 
+                                    <a href="https://discordapp.com/users/sofoniasg" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">@sofoniasg</a>                                
                             </div>
-                            
-                                 <p class="mx-1 font-normal"> Discord </p> 
-                                <a href="#" class="font-lg text-pink-m hover:text-pink-vl hover:decoration-pink-m underline underline-offset-4 decoration-pink-l hover:underline">sofonias-gashaw-dubale</a>                                
                         </div>
                     </div>
-                </div>
                     
                     <!-- contact form -->
-                    <div class="border flex flex-col md:w-3/5 w-full">
-                        <p> links</p>
+                    <div class=" shadow-md shadow-fuchsia-600 flex flex-col md:w-3/5 w-full md:mt-8 bg-backgrnd">
+                        <div class="flex flex-col w-full h-auto p-5">
+                            <div class="h-14 mx-2 content-center bg-gradient-to-r from-backgrnd to-section-bg">
+                                <h2 class=" text-2xl text-left  text-normal text-pink-vl font-serif ">your contact info</h2>
+                            </div>
+                            <form action="" method="POST" class="flex flex-col w-full">
+                                <div class="flex flex-row justify-between">
+                                    <input type="text" name="name" placeholder="Name" class="w-full mx-2 h-12 bg-section-bg border-b-2 border-b-pink-l focus:outline-none focus:border-b-pink-m px-2 my-2" />
+                                    <input type="email" name="email" placeholder="Email" class="w-full mx-2 h-12 bg-section-bg border-b-2 border-b-pink-l focus:outline-none focus:border-b-pink-m px-2 my-2" required/>
+                                </div>
+                                <div class="flex flex-row justify-between">
+                                    <input type="text" name="company name" placeholder="Company Name" class="w-full mx-2 h-12 bg-section-bg border-b-2 border-b-pink-l focus:outline-none focus:border-b-pink-m px-2 my-2"/>
+                                    <input type="email" name="phone" placeholder="Phone Number" class="w-full mx-2 h-12 bg-section-bg border-b-2 border-b-pink-l focus:outline-none focus:border-b-pink-m px-2 my-2" required/>
+                                </div>
+                                <div class="flex flex-row">
+                                    <div class="flex">
+                                        <input type="checkbox" 
+                                        class="w-8 h-8  checked:text-pink-vvl checked:bg-pink-vh checked:border-pink-m "/>
+                                        <label class="text-sm text-gray-500 ms-3 dark:text-neutral-400">Default checkbox</label>
+                                        <input type="checkbox" checked="checked" class="checkbox checkbox-xs" />
+                                      </div>
+                                </div>
+                                <input type="checkbox" class="appearance-none checked:bg-blue-500 ..." />
+                                <textarea name="message" rows="4" placeholder="Project Description" class="w-full h-auto border-b-2 border-b-pink-l focus:outline-none focus:border-b-pink-m px-2 my-2"></textarea>
+                                <button type="submit" class="bg-gradient-to-r from-pink-h via-pink-vl to-pink-m text-white font-bold py-2 px-4 rounded mt-4 hover:scale-[1.02] transition-transform duration-300 ease-in-out">Send</button>
+                            </form>
                     </div>
                 </div>
             </div>
