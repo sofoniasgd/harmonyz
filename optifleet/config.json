@@ -1,0 +1,114 @@
+{
+  "locations": [
+    {
+      "name": "New York",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "country": "USA"
+    },
+    {
+      "name": "Phoenix",
+      "lat": 33.4482,
+      "lng": 112.0777,
+      "country": "USA"
+    },
+    {
+      "name": "Los Angeles",
+      "lat": 34.0549,
+      "lng": 118.2426,
+      "country": "USA"
+    },
+    {
+      "name": "Chicago",
+      "lat": 41.8832,
+      "lng": 87.6324,
+      "country": "USA"
+    },
+    {
+      "name": "Houston",
+      "lat": 29.7601,
+      "lng": 95.3701,
+      "country": "USA"
+    },
+    {
+      "name": "Dallas",
+      "lat": 32.7767,
+      "lng": 96.797,
+      "country": "USA"
+    },
+    {
+      "name": "San Jose",
+      "lat": 37.3387,
+      "lng": 121.8853,
+      "country": "USA"
+    },
+    {
+      "name": "San Antonio",
+      "lat": 29.4252,
+      "lng": 98.4946,
+      "country": "USA"
+    },
+    {
+      "name": "Philadelphia",
+      "lat": 39.9526,
+      "lng": 75.1652,
+      "country": "USA"
+    },
+    {
+      "name": "Addis Ababa",
+      "lat": 9.0192,
+      "lng": 38.7525,
+      "country": "Ethiopia"
+    },
+    {
+      "name": "Adama",
+      "lat": 8.5263,
+      "lng": 39.2583,
+      "country": "Ethiopia"
+    },
+    {
+      "name": "Bahir Dar",
+      "lat": 11.5876,
+      "lng": 37.3878,
+      "country": "Ethiopia"
+    },
+    {
+      "name": "Jimma",
+      "lat": 7.6753,
+      "lng": 36.8373,
+      "country": "Ethiopia"
+    },
+    {
+      "name": "Harar",
+      "lat": 9.3124,
+      "lng": 42.1218,
+      "country": "Ethiopia"
+    }
+  ],
+  "response_format": "detailed",
+  "include_timestamp": true,
+  "max_locations_per_request": 10,
+  "api_keys": [
+    "key_9dkskv3qc2a"
+  ],
+  "plate_mappings": {
+    "SOF010": "Addis Ababa",
+    "OLW998": "New York",
+    "SUX703": "Phoenix",
+    "DSF671": "Los Angeles",
+    "EKX889": "Chicago",
+    "FNT213": "Houston",
+    "CAL903": "Dallas",
+    "STV210": "San Jose",
+    "WUS734": "San Antonio",
+    "VTK297": "Philadelphia",
+    "GRC735": "San Antonio",
+    "IKC353": "San Jose",
+    "CLF789": "Dallas",
+    "IYG933": "Houston",
+    "FOL137": "Chicago",
+    "CKN378": "Los Angeles",
+    "OEC754": "Phoenix",
+    "WNJ562": "New York"
+  }
+}
