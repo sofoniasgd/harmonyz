@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 # Configuration file path
 CONFIG_FILE = 'config.json'
+LOGS_FILE = 'request_logs.json'
 
 # Default configuration
 DEFAULT_CONFIG = {
@@ -46,6 +47,40 @@ def save_config(config):
     """Save configuration to file"""
     with open(CONFIG_FILE, 'w') as f:
         json.dump(config, f, indent=2)
+
+def load_logs():
+    """Load request logs from file"""
+    if os.path.exists(LOGS_FILE):
+        try:
+            with open(LOGS_FILE, 'r') as f:
+                return json.load(f)
+        except:
+            return []
+    return []
+
+def save_log_entry(log_entry):
+    """Save a single log entry"""
+    logs = load_logs()
+    logs.append(log_entry)
+    # Keep only the last 100 requests to prevent file from growing too large
+    logs = logs[-100:]
+    with open(LOGS_FILE, 'w') as f:
+        json.dump(logs, f, indent=2)
+
+def log_request(endpoint, plate_number, api_key, response_data, status_code):
+    """Log API request and response"""
+    log_entry = {
+        'timestamp': datetime.utcnow().isoformat() + 'Z',
+        'endpoint': endpoint,
+        'plate_number': plate_number,
+        'api_key': api_key[:8] + '...' if api_key else None,  # Partial key for security
+        'client_ip': request.remote_addr,
+        'user_agent': request.headers.get('User-Agent', ''),
+        'response_status': status_code,
+        'response_data': response_data,
+        'request_id': str(uuid.uuid4())[:8]
+    }
+    save_log_entry(log_entry)
 
 def require_api_key(f):
     @wraps(f)
@@ -138,6 +173,7 @@ def get_single_location():
             'status': 'success',
             'data': location_data
         })
+        log_request('get_single_location', plate_number, api_key, location_data, 200)
     except Exception as e:
         return jsonify({
             'status': 'error',
@@ -175,6 +211,31 @@ def get_multiple_locations():
             'status': 'error',
             'message': str(e)
         }), 500
+
+# logs web interface
+@app.route('/api/logs', methods=['GET'])
+@require_api_key
+def get_recent_logs():
+    """API endpoint to get recent requests and replies"""
+    try:
+        logs = load_logs()
+        limit = request.args.get('limit', 20, type=int)
+        limit = min(limit, 100)  # Maximum 100 logs
+        
+        # Return most recent logs first
+        recent_logs = logs[-limit:][::-1]
+        
+        return jsonify({
+            'status': 'success',
+            'count': len(recent_logs),
+            'data': recent_logs
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
 
 # Configuration Web Interface
 @app.route('/')
