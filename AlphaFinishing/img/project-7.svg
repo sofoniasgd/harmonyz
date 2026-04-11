@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="t d">
+  <title id="t">Project Placeholder 1</title>
+  <desc id="d">Placeholder image for Alpha Finishing previous project.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9c4a4" />
+      <stop offset="100%" stop-color="#8b5e3c" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)" />
+  <rect x="110" y="120" width="980" height="660" rx="40" fill="#fffaf0" opacity="0.68" />
+  <text x="600" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="60" fill="#314453">Alpha Finishing</text>
+  <text x="600" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" fill="#314453">Project 1</text>
+</svg>
