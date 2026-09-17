@@ -18,18 +18,23 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  overflow-x: hidden;
   background-image:
     radial-gradient(ellipse 70% 45% at 50% 0%, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 65%),
     radial-gradient(ellipse 60% 40% at 100% 100%, color-mix(in srgb, var(--color-cyan) 6%, transparent), transparent 65%),
+    radial-gradient(ellipse 35% 25% at 8% 38%, color-mix(in srgb, var(--color-accent) 6%, transparent), transparent 70%),
+    radial-gradient(ellipse 30% 22% at 92% 18%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 70%),
+    radial-gradient(ellipse 35% 25% at 18% 88%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 70%),
     url("img/stars.svg"),
     linear-gradient(180deg, #0d1315 0%, var(--color-bg) 45%, #070a0b 100%);
-  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
-  background-size: auto, auto, 480px 480px, auto;
-  background-position: top center, bottom right, top left, top center;
-  background-attachment: fixed, fixed, fixed, fixed;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, no-repeat;
+  background-size: auto, auto, auto, auto, auto, 480px 480px, auto;
+  background-position: top center, bottom right, top left, top left, top left, top left, top center;
+  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed, fixed;
 }
 
 @keyframes blink {
@@ -58,15 +63,16 @@ body {
 }
 
 /* Stagger-item: children of a .reveal that cascade in one-by-one once their
-   ancestor section becomes visible (used for skill rows, IT-solution cards) */
+   ancestor section becomes visible (used for the skills list -- slides in
+   from the left, like a terminal line being printed) */
 .stagger-item {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateX(-20px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.is-visible .stagger-item {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 .stagger-item:nth-child(1) { transition-delay: 0ms; }
 .stagger-item:nth-child(2) { transition-delay: 60ms; }
@@ -77,12 +83,83 @@ body {
 .stagger-item:nth-child(7) { transition-delay: 360ms; }
 .stagger-item:nth-child(8) { transition-delay: 420ms; }
 .stagger-item:nth-child(9) { transition-delay: 480ms; }
+
+/* Stagger-pop: same cascading delay, but scales up from small -- used for
+   the IT-solutions cards, so About mixes two distinct entrance styles */
+.stagger-pop {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal.is-visible .stagger-pop {
+  opacity: 1;
+  transform: none;
+}
+.stagger-pop:nth-child(1) { transition-delay: 0ms; }
+.stagger-pop:nth-child(2) { transition-delay: 60ms; }
+.stagger-pop:nth-child(3) { transition-delay: 120ms; }
+.stagger-pop:nth-child(4) { transition-delay: 180ms; }
+
 @media (prefers-reduced-motion: reduce) {
-  .stagger-item {
+  .stagger-item, .stagger-pop {
     opacity: 1;
     transform: none;
     transition: none;
   }
+}
+
+/* Skill bars: fill from empty to their target value (--bar-w) once the
+   ancestor .reveal section becomes visible */
+.skill-bar {
+  width: 0%;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+.reveal.is-visible .skill-bar {
+  width: var(--bar-w);
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-bar {
+    width: var(--bar-w);
+    transition: none;
+  }
+}
+
+/* Movement variants for self-observed cards (each has its own x-intersect,
+   so "is-visible" lands on the element itself, not an ancestor) */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-pop {
+  opacity: 0;
+  transform: scale(0.82);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal-left.is-visible, .reveal-right.is-visible, .reveal-pop.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-left, .reveal-right, .reveal-pop {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Soft grayish gradient panel for body-copy paragraphs that sit directly on
+   the page background (not already inside a bordered card) */
+.text-panel {
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--color-surface-2) 92%, white 4%) 0%,
+    color-mix(in srgb, var(--color-bg) 88%, black 10%) 100%);
+  border: 1px solid var(--color-border);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

@@ -14,50 +14,56 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.14.8/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 </head>
-<body class="text-text font-sans antialiased" x-data="{ mobileOpen: false, projects, experience, education }">
+<body class="text-text font-sans antialiased"
+      x-data="{ mobileOpen: false, projects, experience, education, scrolled: false }"
+      @scroll.window="scrolled = window.scrollY > 60">
 
-    <!-- Header / Nav -->
-    <header class="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur">
-        <nav class="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-            <a href="#home" class="font-mono text-lg font-semibold text-accent">&gt;harmonyz<span class="text-text animate-blink">_</span></a>
+    <!-- Header / Nav: floating pill, grows a bit once you scroll past the top -->
+    <header class="fixed inset-x-0 top-0 z-50 flex justify-center px-4 transition-all duration-300"
+             :class="scrolled ? 'pt-3' : 'pt-6'">
+        <div class="w-full max-w-4xl transition-all duration-300" :class="scrolled ? 'max-w-5xl' : 'max-w-4xl'">
+            <nav class="flex items-center justify-between border border-border bg-surface/85 backdrop-blur-md rounded-full shadow-lg shadow-black/30 transition-all duration-300"
+                 :class="scrolled ? 'h-16 px-6 md:px-8' : 'h-12 px-4 md:px-6'">
+                <a href="#home" class="font-mono text-lg font-semibold text-accent">&gt;harmonyz<span class="text-text animate-blink">_</span></a>
 
-            <ul class="hidden md:flex items-center gap-8 font-mono text-sm text-text-dim">
-                <li><a href="#about" class="hover:text-accent transition-colors">about</a></li>
-                <li><a href="#experience" class="hover:text-accent transition-colors">experience</a></li>
-                <li><a href="#education" class="hover:text-accent transition-colors">education</a></li>
-                <li><a href="#projects" class="hover:text-accent transition-colors">projects</a></li>
-                <li><a href="#contact" class="hover:text-accent transition-colors">contact</a></li>
-            </ul>
+                <ul class="hidden md:flex items-center gap-8 font-mono text-sm text-text-dim">
+                    <li><a href="#about" class="hover:text-accent transition-colors">about</a></li>
+                    <li><a href="#experience" class="hover:text-accent transition-colors">experience</a></li>
+                    <li><a href="#education" class="hover:text-accent transition-colors">education</a></li>
+                    <li><a href="#projects" class="hover:text-accent transition-colors">projects</a></li>
+                    <li><a href="#contact" class="hover:text-accent transition-colors">contact</a></li>
+                </ul>
 
-            <a href="https://resume.harmonyz.dev" target="_blank" rel="noopener"
-               class="hidden md:inline-flex items-center gap-2 border border-accent/60 text-accent font-mono text-sm px-4 py-2 hover:bg-accent hover:text-bg transition-colors">
-                ./resume.sh
-            </a>
+                <a href="https://resume.harmonyz.dev" target="_blank" rel="noopener"
+                   class="hidden md:inline-flex items-center gap-2 border border-accent/60 text-accent font-mono text-sm px-4 py-2 rounded-full hover:bg-accent hover:text-bg transition-colors">
+                    ./resume.sh
+                </a>
 
-            <button @click="mobileOpen = !mobileOpen" class="md:hidden text-text p-2 -mr-2" aria-label="Toggle menu">
-                <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg x-show="mobileOpen" x-cloak class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </nav>
+                <button @click="mobileOpen = !mobileOpen" class="md:hidden text-text p-2 -mr-2" aria-label="Toggle menu">
+                    <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg x-show="mobileOpen" x-cloak class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </nav>
 
-        <div x-show="mobileOpen" x-cloak x-transition
-             class="md:hidden border-t border-border bg-bg px-4 py-4 flex flex-col gap-4 font-mono text-sm text-text-dim">
-            <a href="#about" @click="mobileOpen = false" class="hover:text-accent">about</a>
-            <a href="#experience" @click="mobileOpen = false" class="hover:text-accent">experience</a>
-            <a href="#education" @click="mobileOpen = false" class="hover:text-accent">education</a>
-            <a href="#projects" @click="mobileOpen = false" class="hover:text-accent">projects</a>
-            <a href="#contact" @click="mobileOpen = false" class="hover:text-accent">contact</a>
-            <a href="https://resume.harmonyz.dev" target="_blank" rel="noopener" class="text-accent">./resume.sh</a>
+            <div x-show="mobileOpen" x-cloak x-transition
+                 class="md:hidden mt-2 border border-border bg-surface/95 backdrop-blur-md rounded-2xl shadow-lg shadow-black/30 px-6 py-4 flex flex-col gap-4 font-mono text-sm text-text-dim">
+                <a href="#about" @click="mobileOpen = false" class="hover:text-accent">about</a>
+                <a href="#experience" @click="mobileOpen = false" class="hover:text-accent">experience</a>
+                <a href="#education" @click="mobileOpen = false" class="hover:text-accent">education</a>
+                <a href="#projects" @click="mobileOpen = false" class="hover:text-accent">projects</a>
+                <a href="#contact" @click="mobileOpen = false" class="hover:text-accent">contact</a>
+                <a href="https://resume.harmonyz.dev" target="_blank" rel="noopener" class="text-accent">./resume.sh</a>
+            </div>
         </div>
     </header>
 
     <main>
         <!-- Hero -->
-        <section id="home" class="max-w-6xl mx-auto px-4 md:px-8 pt-16 md:pt-24 pb-28 md:pb-36 flex flex-col-reverse md:flex-row items-center gap-12">
+        <section id="home" class="max-w-6xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-28 md:pb-36 flex flex-col-reverse md:flex-row items-center gap-12">
             <div class="flex-1 text-center md:text-left">
                 <p class="font-mono text-accent text-sm md:text-base mb-3">Hi, my name is</p>
                 <h1 class="font-mono text-4xl sm:text-5xl md:text-6xl font-bold text-text leading-tight"
@@ -76,7 +82,7 @@
                     <span x-text="text"></span><span class="text-accent animate-blink">_</span>
                 </h1>
                 <h2 class="font-mono text-xl md:text-2xl text-text-dim mt-3 mb-6">Software Engineer · IT Technician</h2>
-                <p class="max-w-xl mx-auto md:mx-0 text-text-dim leading-relaxed mb-8">
+                <p class="text-panel max-w-xl mx-auto md:mx-0 text-text-dim leading-relaxed mb-8 p-5">
                     Hi, I'm Sofonias, a software engineer with a background in backend development, databases, and full-stack solutions.
                     With an interest and experience in web scraping, API development, and backend development, I love building efficient
                     and scalable applications. I'm always learning, solving problems, and refining my skills to create impactful solutions.
@@ -88,29 +94,127 @@
                 </div>
             </div>
             <div class="flex-shrink-0">
-                <div class="relative w-44 h-44 md:w-72 md:h-72">
-                    <div class="absolute inset-0 border border-accent/40 translate-x-3 translate-y-3"></div>
-                    <img src="img/sofonias_portrait.png" alt="Sofonias Gashaw" class="relative w-full h-full object-cover border border-border grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="relative w-72 sm:w-80 md:w-[26rem]">
+                    <svg viewBox="0 0 400 370" class="block w-full h-auto drop-shadow-[0_30px_40px_rgba(0,0,0,0.55)]">
+                        <!-- monitor bezel -->
+                        <rect x="30" y="15" width="340" height="210" rx="14" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <!-- screen -->
+                        <rect x="50" y="35" width="300" height="170" rx="4" fill="#05080a"/>
+                        <!-- stand -->
+                        <rect x="185" y="225" width="30" height="25" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <rect x="150" y="250" width="100" height="10" rx="5" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <!-- keyboard -->
+                        <rect x="40" y="268" width="320" height="92" rx="8" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <!-- number row -->
+                        <rect x="46.0" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="69.9" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="93.7" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="117.6" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="141.4" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="165.3" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="189.2" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="213.0" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="236.9" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="260.8" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="284.6" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="308.5" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="332.3" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- qwerty row: tab + letters + backspace -->
+                        <rect x="46.0" y="293" width="32.5" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="80.7" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="102.6" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="124.5" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="146.4" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="168.3" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="190.2" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="212.0" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="233.9" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="255.8" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="277.7" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="299.6" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="321.5" y="293" width="32.5" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- home row: caps + letters + enter -->
+                        <rect x="46.0" y="308" width="36.8" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="85.0" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="107.2" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="129.3" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="151.4" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="173.6" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="195.7" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="217.8" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="239.9" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="262.1" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="284.2" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="306.3" y="308" width="47.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- bottom letter row: shift + letters + shift -->
+                        <rect x="46.0" y="323" width="52.0" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="100.2" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="122.6" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="145.0" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="167.5" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="189.9" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="212.3" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="234.7" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="257.2" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="279.6" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="302.0" y="323" width="52.0" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- bottom row: ctrl, alt, spacebar, alt, ctrl -->
+                        <rect x="46.0" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="82.9" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="119.7" y="338" width="160.6" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="282.5" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="319.3" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                    </svg>
+
+                    <!-- boot log overlay, positioned over the SVG screen rect -->
+                    <div class="absolute overflow-hidden font-mono text-[7.5px] leading-[1.7] sm:text-[8.5px] md:text-[10px] p-2 md:p-3"
+                         style="left:12.5%; top:9.46%; width:75%; height:45.95%;"
+                         x-data="{
+                            lines: ['Loading system', 'Loading harmonyz.dev', 'Initializing components', 'Mounting assets', 'Starting services'],
+                            shown: 0,
+                            done: 0,
+                            ready: false,
+                            async run() {
+                                for (let i = 0; i < this.lines.length; i++) {
+                                    await new Promise(r => setTimeout(r, 280));
+                                    this.shown = i + 1;
+                                    await new Promise(r => setTimeout(r, 260));
+                                    this.done = i + 1;
+                                }
+                                await new Promise(r => setTimeout(r, 400));
+                                this.ready = true;
+                            }
+                         }"
+                         x-init="run()">
+                        <p class="text-text mb-1"><span class="text-accent">$</span> ./init harmonyz.dev</p>
+                        <template x-for="(line, i) in lines" :key="i">
+                            <p x-show="i < shown" x-cloak class="text-text-dim flex items-start gap-1 whitespace-nowrap">
+                                <span class="text-accent w-3 flex-shrink-0" x-text="i < done ? '✓' : ''"></span>
+                                <span x-text="line"></span>
+                            </p>
+                        </template>
+                        <p x-show="ready" x-cloak class="text-text mt-1"><span class="text-accent">$</span> <span class="animate-blink">_</span></p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- About -->
-        <section id="about" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.once="$el.classList.add('is-visible')">
+        <section id="about" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
             <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">01.</span> About</h2>
             <p class="font-mono text-text-dim text-sm mb-10">./about_me</p>
 
             <div class="grid md:grid-cols-5 gap-12">
                 <div class="md:col-span-2">
                     <img src="img/dev_image_ai_600w.png" alt="Sofonias Gashaw illustration" class="w-full border border-border grayscale hover:grayscale-0 transition-all duration-500 mb-6">
-                    <p class="text-text-dim leading-relaxed">
+                    <p class="text-panel text-text-dim leading-relaxed p-5">
                         Backend-leaning full-stack engineer who also handles systems &amp; IT support — from writing the API to keeping the server it runs on healthy.
                     </p>
                 </div>
 
                 <div class="md:col-span-3">
                     <h3 class="font-mono text-sm text-accent mb-4">skills.json</h3>
-                    <div class="space-y-4 mb-12">
+                    <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-12">
                         <!-- Python -->
                         <div class="stagger-item flex items-center gap-4">
                             <svg viewBox="0 0 128 128" class="w-7 h-7 flex-shrink-0">
@@ -129,7 +233,7 @@
                                     <span class="font-mono text-xs text-text-dim">Advanced</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 80%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 80%"></div>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +249,7 @@
                                     <span class="font-mono text-xs text-text-dim">Familiar</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 40%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 40%"></div>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +264,7 @@
                                     <span class="font-mono text-xs text-text-dim">Intermediate</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 60%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 60%"></div>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +279,7 @@
                                     <span class="font-mono text-xs text-text-dim">Intermediate</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 60%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 60%"></div>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +294,7 @@
                                     <span class="font-mono text-xs text-text-dim">Familiar</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 40%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 40%"></div>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +312,7 @@
                                     <span class="font-mono text-xs text-text-dim">Intermediate</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 60%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 60%"></div>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +327,7 @@
                                     <span class="font-mono text-xs text-text-dim">Familiar</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 40%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 40%"></div>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +343,7 @@
                                     <span class="font-mono text-xs text-text-dim">Familiar</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 40%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 40%"></div>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +361,7 @@
                                     <span class="font-mono text-xs text-text-dim">Familiar</span>
                                 </div>
                                 <div class="h-1.5 bg-surface-2 border border-border">
-                                    <div class="h-full bg-accent" style="width: 40%"></div>
+                                    <div class="h-full bg-accent skill-bar" style="--bar-w: 40%"></div>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +369,7 @@
 
                     <h3 class="font-mono text-sm text-accent mb-4">it_solutions.json</h3>
                     <div class="grid sm:grid-cols-2 gap-6">
-                        <div class="stagger-item">
+                        <div class="stagger-pop text-panel p-5">
                             <p class="text-text font-medium mb-2">Systems &amp; Infrastructure</p>
                             <ul class="text-text-dim text-sm space-y-1 list-disc list-inside">
                                 <li>Windows &amp; Linux Administration</li>
@@ -274,7 +378,7 @@
                                 <li>System Performance Monitoring &amp; Optimization</li>
                             </ul>
                         </div>
-                        <div class="stagger-item">
+                        <div class="stagger-pop text-panel p-5">
                             <p class="text-text font-medium mb-2">Networking &amp; Security</p>
                             <ul class="text-text-dim text-sm space-y-1 list-disc list-inside">
                                 <li>Network Configuration &amp; Troubleshooting</li>
@@ -283,7 +387,7 @@
                                 <li>Domain &amp; DNS Management</li>
                             </ul>
                         </div>
-                        <div class="stagger-item">
+                        <div class="stagger-pop text-panel p-5">
                             <p class="text-text font-medium mb-2">Hardware &amp; Troubleshooting</p>
                             <ul class="text-text-dim text-sm space-y-1 list-disc list-inside">
                                 <li>PC &amp; Server Maintenance</li>
@@ -292,7 +396,7 @@
                                 <li>Peripheral &amp; Device Setup</li>
                             </ul>
                         </div>
-                        <div class="stagger-item">
+                        <div class="stagger-pop text-panel p-5">
                             <p class="text-text font-medium mb-2">IT Support &amp; Operations</p>
                             <ul class="text-text-dim text-sm space-y-1 list-disc list-inside">
                                 <li>Software Installation &amp; Configuration</li>
@@ -307,7 +411,7 @@
         </section>
 
         <!-- Experience -->
-        <section id="experience" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.once="$el.classList.add('is-visible')">
+        <section id="experience" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
             <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">02.</span> Experience</h2>
             <p class="font-mono text-text-dim text-sm mb-10">./experience.log</p>
 
@@ -316,10 +420,10 @@
 
                 <div class="space-y-10">
                     <template x-for="(job, index) in experience" :key="index">
-                        <div class="reveal relative flex md:justify-between items-start"
-                             :class="index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'"
+                        <div class="relative flex md:justify-between items-start"
+                             :class="index % 2 === 0 ? 'md:flex-row-reverse reveal-left' : 'md:flex-row reveal-right'"
                              :style="'transition-delay:' + (index * 120) + 'ms'"
-                             x-intersect.once="$el.classList.add('is-visible')">
+                             x-intersect.threshold.20.once="$el.classList.add('is-visible')">
                             <span class="absolute left-4 md:left-1/2 -translate-x-1/2 top-1.5 w-3 h-3 rounded-full bg-accent ring-4 ring-bg z-10"></span>
 
                             <div class="hidden md:block md:w-[calc(50%-2rem)]"></div>
@@ -341,15 +445,15 @@
         </section>
 
         <!-- Education -->
-        <section id="education" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.once="$el.classList.add('is-visible')">
+        <section id="education" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
             <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">03.</span> Education</h2>
             <p class="font-mono text-text-dim text-sm mb-10">./education.log</p>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <template x-for="(item, index) in education" :key="index">
-                    <div class="reveal border border-border bg-surface p-6 hover:border-accent/60 transition-colors"
+                    <div class="reveal-pop border border-border bg-surface p-6 hover:border-accent/60 transition-colors"
                          :style="'transition-delay:' + (index * 100) + 'ms'"
-                         x-intersect.once="$el.classList.add('is-visible')">
+                         x-intersect.threshold.20.once="$el.classList.add('is-visible')">
                         <p class="font-mono text-accent text-xs mb-3" x-text="item.period"></p>
                         <h3 class="text-text font-semibold mb-1" x-text="item.program"></h3>
                         <p class="text-text-dim text-sm" x-text="item.school"></p>
@@ -359,15 +463,16 @@
         </section>
 
         <!-- Projects -->
-        <section id="projects" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.once="$el.classList.add('is-visible')">
+        <section id="projects" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
             <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">04.</span> Projects</h2>
             <p class="font-mono text-text-dim text-sm mb-10">./projects --list</p>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <template x-for="(project, index) in projects" :key="project.title + index">
-                    <article class="reveal group border border-border bg-surface hover:border-accent/60 transition-colors flex flex-col"
+                    <article class="group border border-border bg-surface hover:border-accent/60 transition-colors flex flex-col"
+                             :class="index % 2 === 0 ? 'reveal-left' : 'reveal-right'"
                              :style="'transition-delay:' + (index * 100) + 'ms'"
-                             x-intersect.once="$el.classList.add('is-visible')">
+                             x-intersect.threshold.20.once="$el.classList.add('is-visible')">
                         <div class="aspect-video bg-surface-2 border-b border-border overflow-hidden flex items-center justify-center">
                             <template x-if="project.image">
                                 <img :src="project.image" :alt="project.title" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
@@ -396,14 +501,14 @@
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.once="$el.classList.add('is-visible')">
+        <section id="contact" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
             <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">05.</span> Contact</h2>
             <p class="font-mono text-text-dim text-sm mb-10">./contact --send</p>
 
             <div class="grid md:grid-cols-5 gap-12">
                 <div class="md:col-span-2">
                     <h3 class="text-2xl font-semibold text-text mb-3">Let's talk about your project</h3>
-                    <p class="text-text-dim leading-relaxed mb-8">
+                    <p class="text-panel text-text-dim leading-relaxed mb-8 p-5">
                         Thinking about a new project, a problem to solve, or just want to connect? Use the form or reach out directly through the links below.
                     </p>
                     <ul class="space-y-4 font-mono text-sm">
