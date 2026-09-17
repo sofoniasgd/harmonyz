@@ -14,6 +14,22 @@ const projects = [
     image: "",
     liveUrl: "",
     githubUrl: ""
+  },
+    {
+    title: "Project Title",
+    description: "One or two sentence summary of what this project does and the problem it solves.",
+    tags: ["Tech", "Stack", "Here"],
+    image: "",
+    liveUrl: "",
+    githubUrl: ""
+  },
+    {
+    title: "Project Title",
+    description: "One or two sentence summary of what this project does and the problem it solves.",
+    tags: ["Tech", "Stack", "Here"],
+    image: "",
+    liveUrl: "",
+    githubUrl: ""
   }
 ];
 
@@ -36,6 +52,12 @@ const experience = [
     org: "Addis Ababa (Freelance)",
     period: "2021 — Present",
     summary: "Providing IT support, systems maintenance, and infrastructure troubleshooting."
+  },
+  {
+    role: "Power Platform Developer",
+    org: "Addis Ababa (Remote)",
+    period: "2025 — Present",
+    summary: "Power Apps Studio, Power Automation, Dataverse Management, Sharepoint Administration"
   }
 ];
 

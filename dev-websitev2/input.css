@@ -20,11 +20,69 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-image:
+    radial-gradient(ellipse 70% 45% at 50% 0%, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 65%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, color-mix(in srgb, var(--color-cyan) 6%, transparent), transparent 65%),
+    url("img/stars.svg"),
+    linear-gradient(180deg, #0d1315 0%, var(--color-bg) 45%, #070a0b 100%);
+  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+  background-size: auto, auto, 480px 480px, auto;
+  background-position: top center, bottom right, top left, top center;
+  background-attachment: fixed, fixed, fixed, fixed;
+}
+
 @keyframes blink {
   50% { opacity: 0; }
 }
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+/* Scroll-reveal: sections/cards fade + rise into place as they enter view */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Stagger-item: children of a .reveal that cascade in one-by-one once their
+   ancestor section becomes visible (used for skill rows, IT-solution cards) */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible .stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger-item:nth-child(1) { transition-delay: 0ms; }
+.stagger-item:nth-child(2) { transition-delay: 60ms; }
+.stagger-item:nth-child(3) { transition-delay: 120ms; }
+.stagger-item:nth-child(4) { transition-delay: 180ms; }
+.stagger-item:nth-child(5) { transition-delay: 240ms; }
+.stagger-item:nth-child(6) { transition-delay: 300ms; }
+.stagger-item:nth-child(7) { transition-delay: 360ms; }
+.stagger-item:nth-child(8) { transition-delay: 420ms; }
+.stagger-item:nth-child(9) { transition-delay: 480ms; }
+@media (prefers-reduced-motion: reduce) {
+  .stagger-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
