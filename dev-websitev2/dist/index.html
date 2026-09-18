@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofonias Gashaw — Software Engineer</title>
+    <meta name="description" content="Sofonias Gashaw — software engineer specializing in backend development, databases, and full-stack web solutions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/favicon1.ico">
+    <script src="data.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.14.8/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+</head>
+<body class="text-text font-sans antialiased"
+      x-data="{ mobileOpen: false, projects, experience, education, skills, skillIcons, powerPlatform, itSolutions, aboutBio, heroTitles, scrolled: false }"
+      @scroll.window="scrolled = window.scrollY > 60">
+
+    <!-- Header / Nav: floating pill, grows a bit once you scroll past the top -->
+    <header class="fixed inset-x-0 top-0 z-50 flex justify-center px-4 transition-all duration-300"
+             :class="scrolled ? 'pt-3' : 'pt-6'">
+        <div class="w-full max-w-4xl transition-all duration-300" :class="scrolled ? 'max-w-5xl' : 'max-w-4xl'">
+            <nav class="flex items-center justify-between border border-border bg-surface/85 backdrop-blur-md rounded-full shadow-lg shadow-black/30 transition-all duration-300"
+                 :class="scrolled ? 'h-16 px-6 md:px-8' : 'h-12 px-4 md:px-6'">
+                <a href="#home" class="font-mono text-lg font-semibold text-accent">&gt;harmonyz</a>
+
+                <ul class="hidden md:flex items-center gap-8 font-mono text-sm text-text-dim">
+                    <li><a href="#about" class="hover:text-accent transition-colors">about</a></li>
+                    <li><a href="#experience" class="hover:text-accent transition-colors">experience</a></li>
+                    <li><a href="#education" class="hover:text-accent transition-colors">education</a></li>
+                    <li><a href="#projects" class="hover:text-accent transition-colors">projects</a></li>
+                    <li><a href="#contact" class="hover:text-accent transition-colors">contact</a></li>
+                </ul>
+
+                <a href="https://resume.harmonyz.dev" target="_blank" rel="noopener"
+                   class="hidden md:inline-flex items-center gap-2 border border-accent/60 text-accent font-mono text-sm px-4 py-2 rounded-full hover:bg-accent hover:text-bg transition-colors">
+                    ./resume.sh
+                </a>
+
+                <button @click="mobileOpen = !mobileOpen" class="md:hidden text-text p-2 -mr-2" aria-label="Toggle menu">
+                    <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg x-show="mobileOpen" x-cloak class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </nav>
+
+            <div x-show="mobileOpen" x-cloak x-transition
+                 class="md:hidden mt-2 border border-border bg-surface/95 backdrop-blur-md rounded-2xl shadow-lg shadow-black/30 px-6 py-4 flex flex-col gap-4 font-mono text-sm text-text-dim">
+                <a href="#about" @click="mobileOpen = false" class="hover:text-accent">about</a>
+                <a href="#experience" @click="mobileOpen = false" class="hover:text-accent">experience</a>
+                <a href="#education" @click="mobileOpen = false" class="hover:text-accent">education</a>
+                <a href="#projects" @click="mobileOpen = false" class="hover:text-accent">projects</a>
+                <a href="#contact" @click="mobileOpen = false" class="hover:text-accent">contact</a>
+                <a href="https://resume.harmonyz.dev" target="_blank" rel="noopener" class="text-accent">./resume.sh</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="home" class="max-w-6xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-28 md:pb-36 flex flex-col-reverse md:flex-row items-center gap-12">
+            <div class="flex-1 text-center md:text-left">
+                <p class="font-mono text-accent text-sm md:text-base mb-3">Hi, my name is</p>
+                <h1 class="font-mono text-4xl sm:text-5xl md:text-6xl font-bold text-text leading-tight"
+                    x-data="{
+                        text: '',
+                        full: 'Sofonias Gashaw',
+                        idx: 0,
+                        done: false,
+                        init() {
+                            const id = setInterval(() => {
+                                this.text = this.full.slice(0, this.idx);
+                                this.idx++;
+                                if (this.idx > this.full.length) {
+                                    clearInterval(id);
+                                    this.done = true;
+                                }
+                            }, 90);
+                        }
+                    }">
+                    <span x-text="text"></span><span x-show="!done" class="text-accent">_</span>
+                </h1>
+                <h2 class="font-mono text-xl md:text-2xl text-text-dim mt-3 mb-6"
+                    x-data="{
+                        text: '',
+                        async loop() {
+                            await new Promise(r => setTimeout(r, 1400));
+                            let i = 0;
+                            while (true) {
+                                const full = heroTitles[i % heroTitles.length];
+                                for (let c = 1; c <= full.length; c++) {
+                                    this.text = full.slice(0, c);
+                                    await new Promise(r => setTimeout(r, 80));
+                                }
+                                await new Promise(r => setTimeout(r, 1400));
+                                for (let c = full.length; c >= 0; c--) {
+                                    this.text = full.slice(0, c);
+                                    await new Promise(r => setTimeout(r, 40));
+                                }
+                                await new Promise(r => setTimeout(r, 300));
+                                i++;
+                            }
+                        },
+                        init() { this.loop(); }
+                    }">
+                    <span x-text="text"></span><span class="text-accent animate-blink">_</span>
+                </h2>
+                <p class="text-panel max-w-xl mx-auto md:mx-0 text-text-dim leading-relaxed mb-8 p-5">
+                    Hi, I'm Sofonias, a software engineer with a background in backend development, databases, and full-stack solutions.
+                    With an interest and experience in web scraping, API development, and backend development, I love building efficient
+                    and scalable applications. I'm always learning, solving problems, and refining my skills to create impactful solutions.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 font-mono text-sm">
+                    <a href="#projects" class="border border-accent text-accent px-5 py-3 hover:bg-accent hover:text-bg transition-colors">[View Projects]</a>
+                    <a href="https://resume.harmonyz.dev" target="_blank" rel="noopener" class="border border-border text-text px-5 py-3 hover:border-accent hover:text-accent transition-colors">[./resume.sh]</a>
+                    <a href="#contact" class="border border-border text-text px-5 py-3 hover:border-accent hover:text-accent transition-colors">[Contact Me]</a>
+                </div>
+            </div>
+            <div class="flex-shrink-0">
+                <div class="relative w-72 sm:w-80 md:w-[26rem]">
+                    <svg viewBox="0 0 400 370" class="block w-full h-auto drop-shadow-[0_30px_40px_rgba(0,0,0,0.55)]">
+                        <!-- monitor bezel -->
+                        <rect x="30" y="15" width="340" height="210" rx="14" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <!-- screen -->
+                        <rect x="50" y="35" width="300" height="170" rx="4" fill="#05080a"/>
+                        <!-- stand -->
+                        <rect x="185" y="225" width="30" height="25" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <rect x="150" y="250" width="100" height="10" rx="5" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <!-- keyboard -->
+                        <rect x="40" y="268" width="320" height="92" rx="8" fill="var(--color-surface)" stroke="var(--color-border)" stroke-width="3"/>
+                        <!-- number row -->
+                        <rect x="46.0" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="69.9" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="93.7" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="117.6" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="141.4" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="165.3" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="189.2" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="213.0" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="236.9" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="260.8" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="284.6" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="308.5" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="332.3" y="278" width="21.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- qwerty row: tab + letters + backspace -->
+                        <rect x="46.0" y="293" width="32.5" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="80.7" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="102.6" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="124.5" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="146.4" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="168.3" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="190.2" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="212.0" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="233.9" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="255.8" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="277.7" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="299.6" y="293" width="19.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="321.5" y="293" width="32.5" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- home row: caps + letters + enter -->
+                        <rect x="46.0" y="308" width="36.8" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="85.0" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="107.2" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="129.3" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="151.4" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="173.6" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="195.7" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="217.8" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="239.9" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="262.1" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="284.2" y="308" width="19.9" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="306.3" y="308" width="47.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- bottom letter row: shift + letters + shift -->
+                        <rect x="46.0" y="323" width="52.0" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="100.2" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="122.6" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="145.0" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="167.5" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="189.9" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="212.3" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="234.7" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="257.2" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="279.6" y="323" width="20.2" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="302.0" y="323" width="52.0" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <!-- bottom row: ctrl, alt, spacebar, alt, ctrl -->
+                        <rect x="46.0" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="82.9" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="119.7" y="338" width="160.6" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="282.5" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                        <rect x="319.3" y="338" width="34.7" height="12" rx="1.6" fill="var(--color-surface-2)" stroke="var(--color-border)"/>
+                    </svg>
+
+                    <!-- boot log overlay, positioned over the SVG screen rect -->
+                    <div class="absolute overflow-hidden font-mono text-[7.5px] leading-[1.7] sm:text-[8.5px] md:text-[10px] p-2 md:p-3"
+                         style="left:12.5%; top:9.46%; width:75%; height:45.95%;"
+                         x-data="{
+                            lines: ['Loading system', 'Loading harmonyz.dev', 'Initializing components', 'Mounting assets', 'Starting services'],
+                            shown: 0,
+                            done: 0,
+                            ready: false,
+                            async run() {
+                                for (let i = 0; i < this.lines.length; i++) {
+                                    await new Promise(r => setTimeout(r, 280));
+                                    this.shown = i + 1;
+                                    await new Promise(r => setTimeout(r, 260));
+                                    this.done = i + 1;
+                                }
+                                await new Promise(r => setTimeout(r, 400));
+                                this.ready = true;
+                            }
+                         }"
+                         x-init="run()">
+                        <p class="text-text mb-1"><span class="text-accent">$</span> ./init harmonyz.dev</p>
+                        <template x-for="(line, i) in lines" :key="i">
+                            <p x-show="i < shown" x-cloak class="text-text-dim flex items-start gap-1 whitespace-nowrap">
+                                <span class="text-accent w-3 flex-shrink-0" x-text="i < done ? '✓' : ''"></span>
+                                <span x-text="line"></span>
+                            </p>
+                        </template>
+                        <p x-show="ready" x-cloak class="text-text mt-1"><span class="text-accent">$</span> <span class="animate-blink">_</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+            <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">01.</span> About</h2>
+            <p class="font-mono text-text-dim text-sm mb-10">./about_me</p>
+
+            <div class="grid md:grid-cols-5 gap-12">
+                <div class="md:col-span-2">
+                    <img src="img/dev_image_ai_600w.png" alt="Sofonias Gashaw illustration" class="w-full border border-border grayscale hover:grayscale-0 transition-all duration-500 mb-6">
+                    <p class="text-panel text-text-dim leading-relaxed p-5" x-text="aboutBio"></p>
+                </div>
+
+                <div class="md:col-span-3">
+                    <h3 class="font-mono text-sm text-accent mb-4">skills.json</h3>
+                    <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-12">
+                        <template x-for="skill in skills" :key="skill.name">
+                            <div class="stagger-item flex items-center gap-4">
+                                <span x-html="skillIcons[skill.icon] || skillIcons.generic"></span>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between text-sm mb-1">
+                                        <span class="text-text" x-text="skill.name"></span>
+                                        <span class="font-mono text-xs text-text-dim" x-text="skill.level"></span>
+                                    </div>
+                                    <div class="h-1.5 bg-surface-2 border border-border">
+                                        <div class="h-full bg-accent skill-bar" :style="'--bar-w: ' + skill.percent + '%'"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <h3 class="font-mono text-sm text-accent mb-4">power_platform.json</h3>
+                    <div class="grid sm:grid-cols-2 gap-6 mb-12">
+                        <template x-for="cat in powerPlatform" :key="cat.title">
+                            <div class="stagger-pop text-panel p-5">
+                                <p class="text-text font-medium mb-2" x-text="cat.title"></p>
+                                <ul class="text-text-dim text-sm space-y-1 list-disc list-inside">
+                                    <template x-for="item in cat.items" :key="item">
+                                        <li x-text="item"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                    </div>
+
+                    <h3 class="font-mono text-sm text-accent mb-4">it_solutions.json</h3>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <template x-for="cat in itSolutions" :key="cat.title">
+                            <div class="stagger-pop text-panel p-5">
+                                <p class="text-text font-medium mb-2" x-text="cat.title"></p>
+                                <ul class="text-text-dim text-sm space-y-1 list-disc list-inside">
+                                    <template x-for="item in cat.items" :key="item">
+                                        <li x-text="item"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+            <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">02.</span> Experience</h2>
+            <p class="font-mono text-text-dim text-sm mb-10">./experience.log</p>
+
+            <div class="relative">
+                <div class="absolute top-0 bottom-0 left-4 md:left-1/2 md:-translate-x-1/2 w-px bg-border"></div>
+
+                <div class="space-y-10">
+                    <template x-for="(job, index) in experience" :key="index">
+                        <div class="relative flex md:justify-between items-start"
+                             :class="index % 2 === 0 ? 'md:flex-row-reverse reveal-left' : 'md:flex-row reveal-right'"
+                             :style="'transition-delay:' + (index * 120) + 'ms'"
+                             x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+                            <span class="absolute left-4 md:left-1/2 -translate-x-1/2 top-1.5 w-3 h-3 rounded-full bg-accent ring-4 ring-bg z-10"></span>
+
+                            <div class="hidden md:block md:w-[calc(50%-2rem)]"></div>
+
+                            <div class="w-full pl-12 md:pl-0 md:w-[calc(50%-2rem)]">
+                                <div class="border border-border bg-surface p-6 hover:border-accent/60 transition-colors">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                                        <h3 class="text-lg font-semibold text-text" x-text="job.role"></h3>
+                                        <span class="font-mono text-xs text-accent" x-text="job.period"></span>
+                                    </div>
+                                    <p class="text-text-dim text-sm mb-2" x-text="job.org"></p>
+                                    <p class="text-text-dim leading-relaxed" x-text="job.summary"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+            <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">03.</span> Education</h2>
+            <p class="font-mono text-text-dim text-sm mb-10">./education.log</p>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <template x-for="(item, index) in education" :key="index">
+                    <div class="reveal-pop border border-border bg-surface p-6 hover:border-accent/60 transition-colors"
+                         :style="'transition-delay:' + (index * 100) + 'ms'"
+                         x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+                        <p class="font-mono text-accent text-xs mb-3" x-text="item.period"></p>
+                        <h3 class="text-text font-semibold mb-1" x-text="item.program"></h3>
+                        <p class="text-text-dim text-sm" x-text="item.school"></p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+            <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">04.</span> Projects</h2>
+            <p class="font-mono text-text-dim text-sm mb-10">./projects --list</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <template x-for="(project, index) in projects" :key="project.title + index">
+                    <article class="group border border-border bg-surface hover:border-accent/60 transition-colors flex flex-col"
+                             :class="index % 2 === 0 ? 'reveal-left' : 'reveal-right'"
+                             :style="'transition-delay:' + (index * 100) + 'ms'"
+                             x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+                        <div class="aspect-video bg-surface-2 border-b border-border overflow-hidden flex items-center justify-center">
+                            <template x-if="project.image">
+                                <img :src="project.image" :alt="project.title" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                            </template>
+                            <template x-if="!project.image">
+                                <span class="font-mono text-text-dim text-sm">[ add project image ]</span>
+                            </template>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <p class="font-mono text-accent text-xs mb-2" x-text="String(index + 1).padStart(2, '0') + ' / WORK'"></p>
+                            <h3 class="text-lg font-semibold text-text mb-2" x-text="project.title"></h3>
+                            <p class="text-text-dim text-sm leading-relaxed mb-4 flex-1" x-text="project.description"></p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <template x-for="tag in project.tags" :key="tag">
+                                    <span class="font-mono text-xs border border-border text-text-dim px-2 py-1" x-text="tag"></span>
+                                </template>
+                            </div>
+                            <div class="flex gap-4 font-mono text-sm">
+                                <a x-show="project.liveUrl" :href="project.liveUrl" target="_blank" rel="noopener" class="text-accent hover:underline">Live &#8599;</a>
+                                <a x-show="project.githubUrl" :href="project.githubUrl" target="_blank" rel="noopener" class="text-text-dim hover:text-accent hover:underline">Code &#8599;</a>
+                            </div>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="max-w-6xl mx-auto px-4 md:px-8 py-28 md:py-36 border-t border-border reveal" x-intersect.threshold.20.once="$el.classList.add('is-visible')">
+            <h2 class="font-mono text-2xl md:text-3xl text-text mb-1"><span class="text-accent">05.</span> Contact</h2>
+            <p class="font-mono text-text-dim text-sm mb-10">./contact --send</p>
+
+            <div class="grid md:grid-cols-5 gap-12">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-semibold text-text mb-3">Let's talk about your project</h3>
+                    <p class="text-panel text-text-dim leading-relaxed mb-8 p-5">
+                        Thinking about a new project, a problem to solve, or just want to connect? Use the form or reach out directly through the links below.
+                    </p>
+                    <ul class="space-y-4 font-mono text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent w-20 flex-shrink-0">phone</span>
+                            <a href="tel:251970223923" class="text-text-dim hover:text-accent">(+251) 970223923</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent w-20 flex-shrink-0">email</span>
+                            <a href="mailto:zephaniahsofa@gmail.com" class="text-text-dim hover:text-accent">zephaniahsofa@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent w-20 flex-shrink-0">linkedin</span>
+                            <a href="https://www.linkedin.com/in/sofonias-gashaw-dubale/" target="_blank" rel="noopener" class="text-text-dim hover:text-accent">sofonias-gashaw-dubale</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent w-20 flex-shrink-0">github</span>
+                            <a href="https://github.com/sofoniasgd" target="_blank" rel="noopener" class="text-text-dim hover:text-accent">sofoniasgd</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent w-20 flex-shrink-0">twitter/x</span>
+                            <a href="https://x.com/Sofagashaw" target="_blank" rel="noopener" class="text-text-dim hover:text-accent">sofagashaw</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent w-20 flex-shrink-0">discord</span>
+                            <a href="https://discordapp.com/users/sofoniasg" target="_blank" rel="noopener" class="text-text-dim hover:text-accent">@sofoniasg</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3 border border-border bg-surface p-6 md:p-8"
+                     x-data="{ sending: false, success: false, error: false }">
+                    <form x-show="!success" x-cloak
+                        @submit.prevent="
+                            sending = true; error = false;
+                            fetch('https://formspree.io/f/moveylrb', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    name: $refs.name.value,
+                                    email: $refs.email.value,
+                                    company: $refs.company.value,
+                                    phone: $refs.phone.value,
+                                    message: $refs.message.value,
+                                    website_development: $refs.website_development.checked ? 'yes' : 'no',
+                                    app_development: $refs.app_development.checked ? 'yes' : 'no',
+                                    system_design: $refs.system_design.checked ? 'yes' : 'no',
+                                    e_commerce_site: $refs.e_commerce_site.checked ? 'yes' : 'no',
+                                    it_services: $refs.it_services.checked ? 'yes' : 'no',
+                                    performance_evaluation: $refs.performance_evaluation.checked ? 'yes' : 'no'
+                                })
+                            }).then(res => {
+                                if (res.ok) { success = true; } else { error = true; }
+                            }).catch(() => {
+                                error = true;
+                            }).finally(() => sending = false);
+                        "
+                        class="flex flex-col gap-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <input x-ref="name" type="text" name="name" placeholder="Name" required
+                                   class="bg-surface-2 border border-border focus:border-accent focus:outline-none px-3 py-3 text-sm text-text placeholder:text-text-dim">
+                            <input x-ref="email" type="email" name="email" placeholder="Email" required
+                                   class="bg-surface-2 border border-border focus:border-accent focus:outline-none px-3 py-3 text-sm text-text placeholder:text-text-dim">
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <input x-ref="company" type="text" name="company" placeholder="Company (optional)"
+                                   class="bg-surface-2 border border-border focus:border-accent focus:outline-none px-3 py-3 text-sm text-text placeholder:text-text-dim">
+                            <input x-ref="phone" type="tel" name="phone" placeholder="Phone (optional)"
+                                   class="bg-surface-2 border border-border focus:border-accent focus:outline-none px-3 py-3 text-sm text-text placeholder:text-text-dim">
+                        </div>
+
+                        <p class="font-mono text-xs text-text-dim mt-2">What services do you need?</p>
+                        <div class="grid sm:grid-cols-3 gap-2 font-mono text-xs text-text-dim">
+                            <label class="flex items-center gap-2"><input x-ref="website_development" type="checkbox" class="accent-[color:var(--color-accent)]"> Website Dev</label>
+                            <label class="flex items-center gap-2"><input x-ref="app_development" type="checkbox" class="accent-[color:var(--color-accent)]"> App Dev</label>
+                            <label class="flex items-center gap-2"><input x-ref="system_design" type="checkbox" class="accent-[color:var(--color-accent)]"> System Design</label>
+                            <label class="flex items-center gap-2"><input x-ref="e_commerce_site" type="checkbox" class="accent-[color:var(--color-accent)]"> E-commerce</label>
+                            <label class="flex items-center gap-2"><input x-ref="it_services" type="checkbox" class="accent-[color:var(--color-accent)]"> IT Services</label>
+                            <label class="flex items-center gap-2"><input x-ref="performance_evaluation" type="checkbox" class="accent-[color:var(--color-accent)]"> Performance Eval</label>
+                        </div>
+
+                        <textarea x-ref="message" name="message" rows="4" placeholder="Tell me about your project"
+                                  class="bg-surface-2 border border-border focus:border-accent focus:outline-none px-3 py-3 text-sm text-text placeholder:text-text-dim mt-2"></textarea>
+
+                        <button type="submit" :disabled="sending"
+                                class="mt-2 bg-accent text-bg font-mono text-sm font-semibold py-3 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span x-show="!sending">Send Message</span>
+                            <span x-show="sending" x-cloak>Sending...</span>
+                        </button>
+
+                        <p x-show="error" x-cloak class="text-red-400 text-xs font-mono">Something went wrong — try again or email me directly.</p>
+                    </form>
+
+                    <div x-show="success" x-cloak class="flex flex-col items-center text-center py-8">
+                        <p class="text-accent font-mono text-lg mb-2">Message sent.</p>
+                        <p class="text-text-dim">Thanks for reaching out — I'll get back to you shortly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-border">
+        <div class="max-w-6xl mx-auto px-4 md:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-text-dim">
+            <p>&copy; <span x-text="new Date().getFullYear()"></span> Sofonias Gashaw. Built with Tailwind CSS &amp; Alpine.js.</p>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/sofoniasgd" target="_blank" rel="noopener" class="hover:text-accent">GitHub</a>
+                <a href="https://linkedin.com/in/sofonias-gashaw-dubale" target="_blank" rel="noopener" class="hover:text-accent">LinkedIn</a>
+                <a href="https://x.com/Sofagashaw" target="_blank" rel="noopener" class="hover:text-accent">X</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
